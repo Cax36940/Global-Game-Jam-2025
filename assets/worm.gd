@@ -24,10 +24,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	total_time += delta
 	velocity.y = cos(total_time * SPEED) / 5.0
-	velocity.x = sqrt(1 - velocity.y ** 2) * SPEED
-	velocity.y *= SPEED
+	velocity.x = sqrt(1 - velocity.y ** 2)
 	
-	set_point_position(0, get_point_position(0) + velocity)
+	set_point_position(0, get_point_position(0) + velocity * SPEED)
 
 	for i in range(1, NUMBER_POINT):
 		set_point_position(i, get_point_position(i-1) + JOINT_LENGTH * (get_point_position(i) - get_point_position(i-1)).normalized())
