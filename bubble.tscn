@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://gbcb6vfrmeku"]
+
+[ext_resource type="Script" path="res://bubble.gd" id="1_jhrmi"]
+[ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="2_e0gfu"]
+
+[node name="bubble" type="CharacterBody2D"]
+script = ExtResource("1_jhrmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, -64)
+texture = ExtResource("2_e0gfu")
+
+[node name="Camera2D" type="Camera2D" parent="."]

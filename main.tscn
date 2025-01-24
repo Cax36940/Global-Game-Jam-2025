@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://df5721paxmho5"]
+
+[ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_5cdx7"]
+[ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble.tscn" id="2_fqsu4"]
+
+[node name="main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(433, -175)
+scale = Vector2(4.07812, 1)
+texture = ExtResource("1_5cdx7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-338, -587)
+scale = Vector2(2.34375, 1.14844)
+texture = ExtResource("1_5cdx7")
+
+[node name="bubble" parent="." instance=ExtResource("2_fqsu4")]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(394, -710)
+scale = Vector2(1.23438, 2.75)
+texture = ExtResource("1_5cdx7")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-56, -846)
+scale = Vector2(1.63281, 0.414063)
+texture = ExtResource("1_5cdx7")
