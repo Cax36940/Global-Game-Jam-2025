@@ -1,6 +1,6 @@
 extends Node2D
 
-var worm_scene = preload("res://worm.tscn")
+var worm_scene = preload("res://assets/worm.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
