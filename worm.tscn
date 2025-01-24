@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwdemc7gwxpdu"]
+
+[ext_resource type="Script" path="res://worm.gd" id="1_p0xpk"]
+
+[sub_resource type="Curve" id="Curve_671ti"]
+_data = [Vector2(0, 0.978022), 0.0, 0.0, 0, 0, Vector2(0.921569, 0.0879121), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Worm" type="Line2D"]
+width = 20.0
+width_curve = SubResource("Curve_671ti")
+default_color = Color(0, 0.34902, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_p0xpk")
