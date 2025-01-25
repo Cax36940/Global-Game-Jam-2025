@@ -30,6 +30,7 @@ func get_health(): return health.value
 func get_speed(): return speed.value
 func get_resistance(): return resistance.value
 
+
 func upgrade_stat(stat: Dictionary, cost_func: Callable, value_func: Callable):
 	stat.lvl += 1
 	stat.cost = cost_func.call(stat.base_cost, stat.lvl)
@@ -57,6 +58,7 @@ func _ready() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
 
 func _on_health_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(health.cost):

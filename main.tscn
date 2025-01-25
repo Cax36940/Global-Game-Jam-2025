@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://collectibles/na_coin.tscn" id="5_fdfmh"]
 [ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://collectibles/plastic.tscn" id="6_62wwo"]
 [ext_resource type="AudioStream" uid="uid://dvjr8gxfsjnhi" path="res://sfx/underwater-ambience.wav" id="7_k04dv"]
-[ext_resource type="PackedScene" uid="uid://ciu31gt3qvncu" path="res://collectibles/geyser.tscn" id="7_qohgu"]
+[ext_resource type="PackedScene" uid="uid://cjkjqugu7ras3" path="res://collectibles/geyser.tscn" id="7_qohgu"]
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="8_x20an"]
 
 [node name="main" type="Node2D"]
