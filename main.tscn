@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://of555l6ldsig"]
+[gd_scene load_steps=5 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_5cdx7"]
+[ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
+[ext_resource type="PackedScene" uid="uid://b8aamx2rsae2k" path="res://assets/rock_background.tscn" id="3_poyp4"]
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_15lqo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(433, -175)
@@ -15,7 +18,7 @@ position = Vector2(-338, -587)
 scale = Vector2(2.34375, 1.14844)
 texture = ExtResource("1_5cdx7")
 
-[node name="bubble" parent="." instance=ExtResource("2_fqsu4")]
+[node name="Bubble" parent="." instance=ExtResource("2_fqsu4")]
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(394, -710)
@@ -26,3 +29,6 @@ texture = ExtResource("1_5cdx7")
 position = Vector2(-56, -846)
 scale = Vector2(1.63281, 0.414063)
 texture = ExtResource("1_5cdx7")
+
+[node name="RockBackground" parent="." instance=ExtResource("3_poyp4")]
+position = Vector2(-640, -360)
