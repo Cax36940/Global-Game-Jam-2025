@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjkjqugu7ras3"]
+[gd_scene load_steps=4 format=3 uid="uid://ciu31gt3qvncu"]
 
 [ext_resource type="Script" path="res://collectibles/geyser.gd" id="1_ksdyl"]
 [ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_swd4b"]
+[ext_resource type="AudioStream" uid="uid://dxbl6dfli17xo" path="res://sfx/bubbles.mp3" id="3_x6gim"]
 
 [node name="Geyser" type="Node2D"]
 position = Vector2(709, 563)
@@ -12,3 +13,8 @@ position = Vector2(17, 59)
 scale = Vector2(0.195312, 0.960938)
 skew = -0.280998
 texture = ExtResource("1_swd4b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_x6gim")
+volume_db = -9.0
+parameters/looping = true

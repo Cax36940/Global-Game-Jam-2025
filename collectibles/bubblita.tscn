@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bep6h86si6a"]
+[gd_scene load_steps=5 format=3 uid="uid://bep6h86si6a"]
 
 [ext_resource type="Script" path="res://collectibles/bubblita.gd" id="1_4jjjg"]
 [ext_resource type="Texture2D" uid="uid://bbsonia0sl3il" path="res://collectibles/bubblita.png" id="1_ydjni"]
+[ext_resource type="AudioStream" uid="uid://iq1wwfayb64e" path="res://sfx/small-bubble.mp3" id="3_7fkg7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tb2w8"]
 radius = 13.0
@@ -20,4 +21,8 @@ texture = ExtResource("1_ydjni")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_tb2w8")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7fkg7")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
