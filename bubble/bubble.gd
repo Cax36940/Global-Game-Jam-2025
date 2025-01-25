@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var bubble_sprite = $BubbleSprite
-@onready var bubble_collision : CollisionPolygon2D = $BubbleCollision
+@onready var bubble_collision : CollisionShape2D = $BubbleCollision
 
 const AIR_MIN = 0.1 # bubble pop size
 const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
@@ -22,6 +22,13 @@ func lose_air_check_die(delta: float):
 	air = move_toward(air, AIR_MIN, air_lose_rate*delta)
 	return air <= AIR_MIN
 
+func _process(_delta: float) -> void:
+	if(has_node("../RockBackground")):
+		get_node("../RockBackground").set_velocity(-velocity)
+	bubble_sprite.set_speed_force(-velocity)
+	bubble_collision.shape.segments = bubble_sprite.get_polygon_points()
+	bubble_collision.position.y = bubble_sprite.position.y
+	
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -53,7 +60,3 @@ func _physics_process(delta: float) -> void:
 		# TODO : pop !
 		# TODO : end day
 	
-	if(has_node("../RockBackground")):
-		get_node("../RockBackground").set_velocity(-velocity)
-	bubble_sprite.set_speed_force(-velocity)
-	bubble_collision.polygon = bubble_sprite.get_polygon_points()

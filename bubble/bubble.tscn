@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://gbcb6vfrmeku"]
+[gd_scene load_steps=4 format=3 uid="uid://gbcb6vfrmeku"]
 
 [ext_resource type="Script" path="res://bubble/bubble.gd" id="1_jhrmi"]
 [ext_resource type="PackedScene" uid="uid://idkbtuevxpcd" path="res://bubble/bubble_sprite.tscn" id="3_k1ojm"]
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_kdwbs"]
 
 [node name="Bubble" type="CharacterBody2D"]
 script = ExtResource("1_jhrmi")
@@ -10,6 +12,7 @@ script = ExtResource("1_jhrmi")
 
 [node name="BubbleSprite" parent="." instance=ExtResource("3_k1ojm")]
 
-[node name="BubbleCollision" type="CollisionPolygon2D" parent="."]
-
 [node name="Plastics" type="Node2D" parent="."]
+
+[node name="BubbleCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("ConcavePolygonShape2D_kdwbs")
