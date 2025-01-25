@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=13 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="8_x20an"]
 [ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
 [ext_resource type="PackedScene" uid="uid://cn0uxrgx4pdie" path="res://UI/main_menu.tscn" id="10_llnq5"]
-[ext_resource type="FontFile" uid="uid://d16tm6kyqgi6l" path="res://Seven Segment.ttf" id="11_dqnqe"]
+[ext_resource type="FontFile" uid="uid://bcq74n3ghthmp" path="res://7-segments-display.ttf" id="12_p54j2"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -71,11 +71,11 @@ texture = ExtResource("9_eh8x3")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 modulate = Color(0, 0.937255, 0, 1)
-offset_left = 895.0
+offset_left = 853.0
 offset_top = 5.0
-offset_right = 1027.0
-offset_bottom = 68.0
-theme_override_fonts/font = ExtResource("11_dqnqe")
+offset_right = 1048.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("12_p54j2")
 theme_override_font_sizes/font_size = 60
 text = "10984"
 horizontal_alignment = 2

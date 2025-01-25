@@ -55,7 +55,8 @@ func lose_air_check_die(delta: float):
 	return air < AIR_MIN
 
 func _process(delta: float) -> void:
-	
+	var depth = 10984 + int(position.y/50)
+	$"../CanvasLayer/Label".text = str(depth)
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed = 0
@@ -64,7 +65,6 @@ func _process(delta: float) -> void:
 		set_can_update(false)
 		var timer = get_tree().create_timer(2)
 		timer.timeout.connect(func (): bubble_died.emit())
-		# TODO : end day
 	
 	if(has_node("../RockBackground")):
 		get_node("../RockBackground").set_velocity(-velocity)
@@ -74,7 +74,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
