@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn0uxrgx4pdie"]
+[gd_scene load_steps=10 format=3 uid="uid://cn0uxrgx4pdie"]
 
 [ext_resource type="Script" path="res://UI/main_ui.gd" id="1_vl84j"]
 [ext_resource type="Texture2D" uid="uid://b5q0xbhlk14tx" path="res://UI/ressources/exit.png" id="2_hnf4a"]
 [ext_resource type="Script" path="res://UI/upgrade_button.gd" id="3_frgtn"]
 [ext_resource type="Texture2D" uid="uid://crrdhjk1k1mk2" path="res://UI/ressources/grey_button10.png" id="4_dgnge"]
 [ext_resource type="Texture2D" uid="uid://b3dkbeyddh4qn" path="res://UI/ressources/grey_button11.png" id="5_tvcuv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxndp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c406f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evjsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kegmw"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -60,6 +68,7 @@ columns = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lxndp")
 flat = true
 expand_icon = true
 script = ExtResource("3_frgtn")
@@ -114,6 +123,7 @@ text = "Valeur : 420.69"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c406f")
 flat = true
 script = ExtResource("3_frgtn")
 button_up_icon = ExtResource("4_dgnge")
@@ -167,6 +177,7 @@ text = "Valeur : 420.69"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_evjsl")
 flat = true
 script = ExtResource("3_frgtn")
 button_up_icon = ExtResource("4_dgnge")
@@ -220,6 +231,7 @@ text = "Valeur : 420.69"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kegmw")
 flat = true
 script = ExtResource("3_frgtn")
 button_up_icon = ExtResource("4_dgnge")

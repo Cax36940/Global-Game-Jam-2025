@@ -13,11 +13,14 @@ func _ready() -> void:
 	self.mouse_exited.connect(_on_mouse_exited)
 	self.button_down.connect(_on_button_down)
 	self.button_up.connect(_on_button_up)
+	self.focus_entered.connect(_on_mouse_entered)
+	self.focus_exited.connect(_on_mouse_exited)
+	
 	$NinePatchRect.modulate = default_color
 	$NinePatchRect.texture = button_up_icon
 
 
-func set_upgrade_gfx(cost: int, lvl: int, value: float):
+func set_upgrade_txt(cost: int, lvl: int, value: float):
 	$VBoxContainer/Cost.text = "Prix : " + str(cost) + " NaCl"
 	$VBoxContainer/Level.text = "Niveau " + str(lvl)
 	$VBoxContainer/Value.text = "Valeur " + str(value)

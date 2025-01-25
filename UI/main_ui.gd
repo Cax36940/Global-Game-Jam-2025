@@ -46,9 +46,12 @@ func _ready() -> void:
 	speed.lvl = 0
 	speed.cost = speed.base_cost
 	speed.value = speed.base_value
-	$GridContainer/HealthUpgradeButton.set_upgrade_gfx(health.cost, health.lvl, health.value)
-	$GridContainer/ResistanceUpgradeButton.set_upgrade_gfx(resistance.cost, resistance.lvl, resistance.value)
-	$GridContainer/SpeedUpgradeButton.set_upgrade_gfx(speed.cost, speed.lvl, speed.value)
+	$GridContainer/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
+	$GridContainer/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
+	$GridContainer/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+	
+	# select first button for keyboard/gamepad navigation
+	$GridContainer/HealthUpgradeButton.grab_focus()
 	
 
 
@@ -61,7 +64,7 @@ func _on_health_upgrade_button_pressed() -> void:
 		func (base, lvl): return base * (lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$GridContainer/HealthUpgradeButton.set_upgrade_gfx(health.cost, health.lvl, health.value)
+	$GridContainer/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
 
 
 func _on_resistance_upgrade_button_pressed() -> void:
@@ -69,7 +72,7 @@ func _on_resistance_upgrade_button_pressed() -> void:
 		func (base, lvl): return base * (lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$GridContainer/ResistanceUpgradeButton.set_upgrade_gfx(resistance.cost, resistance.lvl, resistance.value)
+	$GridContainer/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 
 
 func _on_speed_upgrade_button_pressed() -> void:
@@ -77,4 +80,4 @@ func _on_speed_upgrade_button_pressed() -> void:
 		func (base, lvl): return base * (lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$GridContainer/SpeedUpgradeButton.set_upgrade_gfx(speed.cost, speed.lvl, speed.value)
+	$GridContainer/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
