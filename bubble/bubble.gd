@@ -21,6 +21,10 @@ var stock_capacity = 0.1 # air stock capacity (1.0 = AIR_MAX) (between 0 and STO
 var stock = 0.1 # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 
+var can_move = false
+
+func set_can_move(value: bool):
+	can_move = value
 
 func reset():
 	pass # mettre tout aux valeurs initiales (link to ui)
@@ -46,6 +50,8 @@ func lose_air_check_die(delta: float):
 	return air < AIR_MIN
 
 func _process(delta: float) -> void:
+	if !can_move: return
+	
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed = 0
@@ -63,7 +69,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
+	if !can_move: return
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
