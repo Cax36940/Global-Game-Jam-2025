@@ -13,6 +13,10 @@ var air = 1.0
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 var air_lose_rate = 0.1 # per second
 
+var can_move = false
+
+func set_can_move(value: bool):
+	can_move = value
 
 func adjust_size():
 	scale = Vector2(air, air)
@@ -23,6 +27,8 @@ func lose_air_check_die(delta: float):
 	return air <= AIR_MIN
 
 func _process(delta: float) -> void:
+	if !can_move: return
+	
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed = 0
@@ -41,7 +47,7 @@ func _process(delta: float) -> void:
 
 	
 func _physics_process(delta: float) -> void:
-	
+	if !can_move: return
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

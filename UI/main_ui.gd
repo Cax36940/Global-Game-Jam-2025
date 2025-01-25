@@ -1,5 +1,5 @@
 class_name MainUI
-extends Control
+extends CanvasLayer
 
 
 var health = {
@@ -60,12 +60,6 @@ func _ready() -> void:
 	ui_positions.append($RightUpgrades.position)
 	ui_positions.append($GameTitle.position)
 
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		start_game()
-	if Input.is_action_just_pressed("ui_copy"):
-		show_main_ui()
 
 func start_game() -> void:
 	var tween = get_tree().create_tween()

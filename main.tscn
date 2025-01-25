@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=11 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ciu31gt3qvncu" path="res://collectibles/geyser.tscn" id="7_qohgu"]
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="8_x20an"]
 [ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
+[ext_resource type="PackedScene" uid="uid://cn0uxrgx4pdie" path="res://UI/main_menu.tscn" id="10_llnq5"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -16,7 +17,7 @@ script = ExtResource("1_15lqo")
 [node name="Bubble" parent="." instance=ExtResource("2_fqsu4")]
 
 [node name="RockBackground" parent="." instance=ExtResource("3_poyp4")]
-position = Vector2(-640, -360)
+position = Vector2(-960, -540)
 
 [node name="NaCoin" parent="." instance=ExtResource("5_fdfmh")]
 position = Vector2(195, -325)
@@ -45,7 +46,16 @@ position = Vector2(275, -356)
 stream = ExtResource("8_x20an")
 parameters/looping = false
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1007.0
+offset_top = 289.0
+offset_right = 1007.0
+offset_bottom = 616.0
+color = Color(0.0941176, 0.0784314, 0.054902, 1)
+
 [node name="Chemney" type="Sprite2D" parent="."]
 position = Vector2(-20, 158)
 scale = Vector2(0.241875, 0.241875)
 texture = ExtResource("9_eh8x3")
+
+[node name="MainUI" parent="." instance=ExtResource("10_llnq5")]
