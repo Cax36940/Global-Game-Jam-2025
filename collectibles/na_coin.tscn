@@ -1,14 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://qwp518eg201m"]
+[gd_scene load_steps=5 format=3 uid="uid://qwp518eg201m"]
 
 [ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_jxsfn"]
+[ext_resource type="Script" path="res://collectibles/na_coin.gd" id="1_m00ff"]
+[ext_resource type="Texture2D" uid="uid://e4c6kupeixx0" path="res://collectibles/na.png" id="2_7i82u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wlyq5"]
 radius = 19.0263
 
 [node name="NaCoin" type="StaticBody2D"]
 collision_layer = 0
+script = ExtResource("1_m00ff")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 0, 1)
 position = Vector2(-3.8147e-06, -3.8147e-06)
 rotation = 4.71239
@@ -19,8 +23,14 @@ texture = ExtResource("1_jxsfn")
 shape = SubResource("CircleShape2D_wlyq5")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -15.0
 offset_top = -12.0
 offset_right = 16.0
 offset_bottom = 15.0
 text = "Na+"
+
+[node name="Na" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -3.8147e-06)
+scale = Vector2(0.03275, 0.03275)
+texture = ExtResource("2_7i82u")
