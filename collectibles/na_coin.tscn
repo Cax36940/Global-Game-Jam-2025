@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://qwp518eg201m"]
+
+[ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_jxsfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wlyq5"]
+radius = 19.0263
+
+[node name="NaCoin" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(-3.8147e-06, -3.8147e-06)
+rotation = 4.71239
+scale = Vector2(0.272153, 0.272153)
+texture = ExtResource("1_jxsfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wlyq5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -12.0
+offset_right = 16.0
+offset_bottom = 15.0
+text = "Na+"

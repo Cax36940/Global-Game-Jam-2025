@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
 [ext_resource type="PackedScene" uid="uid://b8aamx2rsae2k" path="res://assets/rock_background.tscn" id="3_poyp4"]
-[ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://na_coin.tscn" id="5_fdfmh"]
-[ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://plastic.tscn" id="6_62wwo"]
+[ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://collectibles/na_coin.tscn" id="5_fdfmh"]
+[ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://collectibles/plastic.tscn" id="6_62wwo"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
