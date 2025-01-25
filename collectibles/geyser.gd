@@ -11,6 +11,7 @@ func create_bubblita():
 	var vy = initial_bubblita_mean_speed.y + randfn(0.0, 0.1)
 	bubblita.velocity.x = vx
 	bubblita.velocity.y = vy
+	bubblita.scale *= randf_range(0.5, 1.0)
 	add_child(bubblita)
 
 
