@@ -3,24 +3,47 @@ extends CharacterBody2D
 @onready var bubble_sprite = $BubbleSprite
 @onready var bubble_collision : CollisionShape2D = $BubbleCollision
 
-const AIR_MIN = 0.1 # bubble pop size
+# every air-related variable is a percentage of AIR_MAX
+const AIR_MAX = 1.0 # initial bubble max size (with all upgrades) = in-game max size
+const AIR_MIN = 0.01 # bubble pop size
+const AIR_LOSE_RATE = 0.01 # per second
+const REFILL_SPEED = 0.1 # per second
+
+const STOCK_MAX = 10.0 # max air stock size (10 times AIR_MAX)
 const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
 const SLIDE_RATE_INPUT = 2.0
+const ZOOM_PER_SEC = 0.1
 
 var hspeed = 300.0
 var vspeed = 100.0
-var air = 1.0
+var air = 0.1 # TODO replace with initial air value
+var stock_capacity = 0.1 # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
+var stock = 0.1 # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
-var air_lose_rate = 0.1 # per second
 
 
-func adjust_size():
-	scale = Vector2(air, air)
-	$Camera2D.zoom = Vector2(1/mult, 1/mult)
+func reset():
+	pass # mettre tout aux valeurs initiales (link to ui)
+
+
+func adjust_size(delta: float):
+	scale = Vector2(10*air, 10*air)
+	var z = $Camera2D.zoom.x
+	z = move_toward(z, 1/mult, ZOOM_PER_SEC * delta)
+	$Camera2D.zoom = Vector2(z, z)
+
+func refill(quantity: float):
+	quantity = min(quantity, stock)
+	air += quantity
+	stock -= quantity
 
 func lose_air_check_die(delta: float):
-	air = move_toward(air, AIR_MIN, air_lose_rate*delta)
-	return air <= AIR_MIN
+	print(stock)
+	air = move_toward(air, 0, AIR_LOSE_RATE * delta)
+	air = min(air, AIR_MAX)
+	if air < AIR_MIN:
+		refill(AIR_MIN - air)
+	return air < AIR_MIN
 
 func _process(delta: float) -> void:
 	var die = lose_air_check_die(delta)
@@ -30,7 +53,6 @@ func _process(delta: float) -> void:
 		pop()
 		set_physics_process(false)
 		set_process(false)
-		# TODO : pop !
 		# TODO : end day
 	
 	if(has_node("../RockBackground")):
@@ -39,13 +61,16 @@ func _process(delta: float) -> void:
 	bubble_collision.shape.segments = bubble_sprite.get_polygon_points()
 	bubble_collision.position.y = bubble_sprite.position.y
 
-	
+
 func _physics_process(delta: float) -> void:
 	
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	var use_stock := Input.is_action_pressed("air")
+	if use_stock:
+		refill(REFILL_SPEED * delta)
 	
 	"""
 	# With no friction/sliding effects
@@ -61,13 +86,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, hspeed * SLIDE_RATE * delta)
 	
-	mult = sqrt(air)
+	mult = sqrt(10*air)
 	velocity.y = - vspeed * mult
 	
-	adjust_size()
+	adjust_size(delta)
 	move_and_slide()
 
 func pop():
 	bubble_sprite.pop()
-	pass
 	

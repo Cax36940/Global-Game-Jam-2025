@@ -4,14 +4,15 @@ extends RigidBody2D
 var velocity = Vector2(0, -1.0)
 const HSPEED_VARIATION = 0.2
 const VSPEED_VARIATION = 0.2
-var air = 0.1
+var air = 0.005
 var end_time = 0.0
 const END_TIME_MEAN = 10.0 # seconds
 var finished = false
+var lifetime = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	end_time = Time.get_ticks_msec() + randfn(END_TIME_MEAN * 1000, 0.5)
+	lifetime = randfn(END_TIME_MEAN * 1000, 0.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +20,8 @@ func _process(delta: float) -> void:
 	velocity.x += randfn(0.0, 0.2) * HSPEED_VARIATION
 	velocity.y += randfn(0.0, 0.1) * VSPEED_VARIATION
 	position += velocity * delta * 60
-	if Time.get_ticks_msec() > end_time:
+	lifetime -= delta
+	if lifetime <= 0.0:
 		pop()
 
 func pop():
