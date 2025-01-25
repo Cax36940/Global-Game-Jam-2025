@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://assets/rock_background.gd" id="1_hcsqu"]
 
 [node name="RockBackground" type="Node2D"]
+z_as_relative = false
 script = ExtResource("1_hcsqu")
