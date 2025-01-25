@@ -20,8 +20,8 @@ func _ready() -> void:
 	$NinePatchRect.texture = button_up_icon
 
 
-func set_upgrade_txt(cost: int, lvl: int, value: float):
-	$VBoxContainer/Cost.text = "Prix : " + str(cost) + " NaCl"
+func set_upgrade_txt(cost: Cost, lvl: int, value: float):
+	$VBoxContainer/Cost.text = "Prix : " + Cost.parse_from_costs(cost)
 	$VBoxContainer/Level.text = "Niveau " + str(lvl)
 	$VBoxContainer/Value.text = "Valeur " + str(value)
 
