@@ -30,6 +30,15 @@ func _process(_delta: float) -> void:
 	bubble_collision.position.y = bubble_sprite.position.y
 	
 func _physics_process(delta: float) -> void:
+	
+	var die = lose_air_check_die(delta)
+	if die:
+		vspeed = 0
+		pop()
+		return
+		# TODO : pop !
+		# TODO : end day
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -51,12 +60,10 @@ func _physics_process(delta: float) -> void:
 	mult = sqrt(air)
 	velocity.y = - vspeed * mult
 	
-	var die = lose_air_check_die(delta)
 	adjust_size()
 	move_and_slide()
-	
-	if die:
-		vspeed = 0
-		# TODO : pop !
-		# TODO : end day
+
+func pop():
+	bubble_sprite.pop()
+	pass
 	
