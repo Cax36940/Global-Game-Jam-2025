@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxfvl4ttl78o4"]
+
+[ext_resource type="PackedScene" uid="uid://idkbtuevxpcd" path="res://bubble/bubble_sprite.tscn" id="1_dfgak"]
+
+[node name="BubbleTest" type="Node2D"]
+
+[node name="BlobSimulation" parent="." instance=ExtResource("1_dfgak")]
+position = Vector2(320, 160)

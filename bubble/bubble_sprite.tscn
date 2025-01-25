@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://idkbtuevxpcd"]
+
+[ext_resource type="Script" path="res://bubble/bubble_sprite.gd" id="1_tdfyk"]
+
+[node name="BlobSimulation" type="Node2D"]
+script = ExtResource("1_tdfyk")
+
+[node name="Blob" type="Polygon2D" parent="."]
+color = Color(0.486275, 0.678431, 0.956863, 0.309804)
+
+[node name="BlobOutline" type="Line2D" parent="."]
+closed = true
+default_color = Color(0.164706, 0.4, 0.733333, 0.317647)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

@@ -1,0 +1,130 @@
+extends Node2D
+
+@export var points: int = 30
+@export var radius: float = 100.0
+
+var area: float
+var circumference: float
+var length: float
+
+@onready var blob: Polygon2D = $Blob
+@onready var blob_outline : Line2D = $BlobOutline
+
+var blob_initial_points : Array[Vector2]
+var blob_points : Array[Vector2]
+var blob_old_points : Array[Vector2]
+
+var accumulated_displacements: Array
+var normals: Array[Vector2]
+
+var mouse_pos: Vector2
+var mouse_colliding: bool = false
+
+func _ready() -> void:
+	area = radius * radius * PI
+	circumference = radius * 2 * PI
+	length = circumference * 1.15 / points
+	
+	blob_points = []
+	blob_old_points = []
+	accumulated_displacements.resize(points * 3)
+	accumulated_displacements.fill(0)
+	normals.resize(points)
+	
+	# Create the initial shape
+	for i in range(points):
+		var delta = Vector2(radius, 0).rotated(deg_to_rad((360 / points) * i))
+		blob_points.push_back(global_position + delta)
+		blob_initial_points.push_back(global_position + delta)
+		blob_old_points.push_back(global_position + delta)
+		normals[i] = delta.normalized()
+	
+	# Center the blob
+	blob.polygon = blob_points
+	blob_outline.points = blob_points
+	# Ensure mouse tracking
+	set_process_input(true)
+
+func _process(delta: float) -> void:
+	# Constraint resolution (10 iterations for stability)
+	for _j in range(10):
+		for i in range(points):
+			var next_index = (i + 1) % points
+			
+			# Pull segments toward each other
+			var to_next = blob_points[i] - blob_points[next_index]
+			if to_next.length() > length:
+				to_next = to_next.normalized() * length
+				var offset = (blob_points[i] - blob_points[next_index]) - to_next
+				
+				accumulated_displacements[i * 3] -= offset.x / 2
+				accumulated_displacements[i * 3 + 1] -= offset.y / 2
+				accumulated_displacements[i * 3 + 2] += 1.0
+				
+				accumulated_displacements[next_index * 3] += offset.x / 2
+				accumulated_displacements[next_index * 3 + 1] += offset.y / 2
+				accumulated_displacements[next_index * 3 + 2] += 1.0
+		
+		# Compute area difference and dilation
+		var current_area = blob_area()
+		var delta_area = area - current_area if current_area < area * 2 else 0
+		var dilation_distance = delta_area / circumference
+		
+		# Apply dilation
+		for i in range(points):
+			var prev_index = (i - 1 + points) % points
+			var next_index = (i + 1) % points
+			var normal = (blob_points[next_index] - blob_points[prev_index]).orthogonal().normalized()
+			
+			accumulated_displacements[i * 3] += normal.x * dilation_distance
+			accumulated_displacements[i * 3 + 1] += normal.y * dilation_distance
+			accumulated_displacements[i * 3 + 2] += 1.0
+		
+		# Apply accumulated forces
+		for i in range(points):
+			if accumulated_displacements[i * 3 + 2] > 0:
+				blob_points[i] += Vector2(accumulated_displacements[i * 3], accumulated_displacements[i * 3 + 1]) / accumulated_displacements[i * 3 + 2]
+		
+		# Reset displacements
+		accumulated_displacements.fill(0)
+		
+		# Collision handling
+		for i in range(points):
+			if mouse_colliding and (blob_points[i] - mouse_pos + global_position).length() < 50:
+				blob_points[i] = set_distance(blob_points[i], mouse_pos - global_position, 50)
+			
+			if (blob_points[i] - global_position).length() > 150:
+				blob_points[i] = set_distance(blob_points[i], global_position, 150)
+	
+	# Apply Verlet Integration
+	for i in range(points):
+		verlet_integrate_blob(i)
+		blob_points[i] += (blob_initial_points[i] - blob_points[i]) * delta
+		#blob_points[i] += Vector2(0, min(1, delta * 30))  # Apply gravity
+	
+	blob.polygon = blob_points
+	blob_outline.points = blob_points
+	
+func verlet_integrate_blob(i : int) -> void:
+	var temp = blob_points[i]
+	blob_points[i] = blob_points[i] + (blob_points[i] - blob_old_points[i])
+	blob_old_points[i] = temp
+
+func set_distance(current_point: Vector2, anchor: Vector2, distance: float) -> Vector2:
+	var to_anchor = (current_point - anchor).normalized() * distance
+	return anchor + to_anchor
+
+func blob_area() -> float:
+	var area = 0.0
+	for i in range(len(blob_points) - 1):
+		area += blob_points[i].x * blob_points[i + 1].y - blob_points[i + 1].x * blob_points[i].y
+	return abs(area) / 2.0
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_pos = event.position
+	elif event is InputEventMouseButton:
+		if event.pressed:
+			mouse_colliding = true
+		else:
+			mouse_colliding = false
