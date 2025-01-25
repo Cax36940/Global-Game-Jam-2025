@@ -51,3 +51,5 @@ func _physics_process(delta: float) -> void:
 		vspeed = 0
 		# TODO : pop !
 		# TODO : end day
+		
+	get_node("../RockBackground").set_velocity(-velocity)

@@ -1,11 +1,12 @@
 extends Line2D
 
 var velocity : Vector2 = Vector2.ZERO
-var camera_velocity : Vector2 = Vector2.ZERO
 var total_time : float = 0.0
 const SPEED : float = 1.0
 const NUMBER_POINT : int = 10
 const JOINT_LENGTH : float = 20.0
+var velocity_factor : float = 1.0 # factor to account for depth of the layer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(NUMBER_POINT):
@@ -24,12 +25,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position += camera_velocity * delta
+	position += velocity * delta * velocity_factor
 	total_time += delta
-	velocity.y = cos(total_time * SPEED) / 5.0
-	velocity.x = sqrt(1 - velocity.y ** 2)
 	
-	set_point_position(0, get_point_position(0) + velocity * SPEED)
+	var local_velocity : Vector2 = Vector2.ZERO
+	local_velocity.y = cos(total_time * SPEED) / 5.0
+	local_velocity.x = sqrt(1 - local_velocity.y ** 2)
+
+	set_point_position(0, get_point_position(0) + local_velocity * SPEED)
 
 	for i in range(1, NUMBER_POINT):
 		set_point_position(i, get_point_position(i-1) + JOINT_LENGTH * (get_point_position(i) - get_point_position(i-1)).normalized())
@@ -39,5 +42,8 @@ func _process(delta: float) -> void:
 		queue_free()
 	pass
 
-func set_camera_velocity(new_camera_velocity : Vector2):
-	camera_velocity = new_camera_velocity
+func set_velocity(new_velocity : Vector2):
+	velocity = new_velocity
+
+func set_velocity_factor(new_velocity_factor : float) :
+	velocity_factor = new_velocity_factor

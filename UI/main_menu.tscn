@@ -281,6 +281,42 @@ text = "Prix : 999 NaCl"
 layout_mode = 2
 text = "Valeur : 420.69"
 
+[node name="Currencies" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -315.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 86.0
+grow_horizontal = 0
+
+[node name="Na+" type="Label" parent="Currencies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Na+ : 150
+"
+horizontal_alignment = 2
+
+[node name="Cl-" type="Label" parent="Currencies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cl- : 150"
+horizontal_alignment = 2
+
+[node name="H+" type="Label" parent="Currencies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "H+ : 150"
+horizontal_alignment = 2
+
+[node name="O-" type="Label" parent="Currencies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "O- : 150"
+horizontal_alignment = 2
+
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="GridContainer/HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
 [connection signal="pressed" from="GridContainer/ResistanceUpgradeButton" to="." method="_on_resistance_upgrade_button_pressed"]

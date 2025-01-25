@@ -1,27 +1,28 @@
 class_name MainUI
 extends Control
 
+
 var health = {
-	base_cost = 10,
+	base_cost = Cost.multiply(Cost.costs["H2"], 10),
 	base_value = 1.0,
 	lvl = 0,
-	cost = 10,
+	cost = Cost.new(0, 0, 10, 0),
 	value = 1.0
 }
 
 var resistance = {
-	base_cost = 10,
+	base_cost = Cost.multiply(Cost.costs["NaCl"], 5),
 	base_value = 1.0,
 	lvl = 0,
-	cost = 10,
+	cost = Cost.new(0, 0, 10, 0),
 	value = 1.0
 }
 
 var speed = {
-	base_cost = 10,
+	base_cost = Cost.multiply(Cost.costs["NaClO4"], 3),
 	base_value = 1.0,
 	lvl = 0,
-	cost = 10,
+	cost = Cost.new(0, 0, 10, 0),
 	value = 1.0
 }
 
@@ -52,7 +53,6 @@ func _ready() -> void:
 	
 	# select first button for keyboard/gamepad navigation
 	$GridContainer/HealthUpgradeButton.grab_focus()
-	
 
 
 func _on_quit_button_pressed() -> void:
@@ -60,8 +60,8 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_health_upgrade_button_pressed() -> void:
-	upgrade_stat(health, 
-		func (base, lvl): return base * (lvl + 1), 
+	upgrade_stat(health,
+		func (base, lvl): return Cost.multiply(base, lvl + 1),
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
 	$GridContainer/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
@@ -69,7 +69,7 @@ func _on_health_upgrade_button_pressed() -> void:
 
 func _on_resistance_upgrade_button_pressed() -> void:
 	upgrade_stat(resistance, 
-		func (base, lvl): return base * (lvl + 1), 
+		func (base, lvl): return Cost.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
 	$GridContainer/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
@@ -77,7 +77,7 @@ func _on_resistance_upgrade_button_pressed() -> void:
 
 func _on_speed_upgrade_button_pressed() -> void:
 	upgrade_stat(speed, 
-		func (base, lvl): return base * (lvl + 1), 
+		func (base, lvl): return Cost.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
 	$GridContainer/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)

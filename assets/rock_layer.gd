@@ -116,3 +116,6 @@ func set_color(new_color : Color) :
 
 func set_velocity_factor(new_velocity_factor : float) :
 	velocity_factor = new_velocity_factor
+
+func set_velocity(new_velocity : Vector2):
+	velocity = new_velocity

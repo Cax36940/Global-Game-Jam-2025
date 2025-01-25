@@ -34,6 +34,11 @@ func generate_worm():
 	instance.position.x = randf_range(-100, 600)
 	instance.position.y = randf_range(-1000, 0)
 	instance.z_index = randi_range(-2, -24)
-	instance.set_camera_velocity(Vector2(0, 100 * first_layer_depth / (first_layer_depth + (-instance.z_index/2) * layer_spacing)))
+	instance.set_velocity(Vector2(0, 100))
+	instance.set_velocity_factor(first_layer_depth / (first_layer_depth + (-instance.z_index/2) * layer_spacing))
 	add_child(instance)
 	generate_worm()
+
+func set_velocity(new_velocity : Vector2):
+	for child in get_children():
+		child.set_velocity(new_velocity)
