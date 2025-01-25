@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=10 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://collectibles/na_coin.tscn" id="5_fdfmh"]
 [ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://collectibles/plastic.tscn" id="6_62wwo"]
 [ext_resource type="AudioStream" uid="uid://dvjr8gxfsjnhi" path="res://sfx/underwater-ambience.wav" id="7_k04dv"]
-[ext_resource type="PackedScene" uid="uid://cjkjqugu7ras3" path="res://collectibles/geyser.tscn" id="7_qohgu"]
+[ext_resource type="PackedScene" uid="uid://ciu31gt3qvncu" path="res://collectibles/geyser.tscn" id="7_qohgu"]
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="8_x20an"]
+[ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -43,3 +44,8 @@ volume_db = -9.0
 position = Vector2(275, -356)
 stream = ExtResource("8_x20an")
 parameters/looping = false
+
+[node name="Chemney" type="Sprite2D" parent="."]
+position = Vector2(-20, 158)
+scale = Vector2(0.241875, 0.241875)
+texture = ExtResource("9_eh8x3")

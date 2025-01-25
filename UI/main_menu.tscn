@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn0uxrgx4pdie"]
+[gd_scene load_steps=17 format=3 uid="uid://cn0uxrgx4pdie"]
 
 [ext_resource type="Script" path="res://UI/main_ui.gd" id="1_vl84j"]
 [ext_resource type="Texture2D" uid="uid://b5q0xbhlk14tx" path="res://UI/ressources/exit.png" id="2_hnf4a"]
@@ -7,44 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://b3dkbeyddh4qn" path="res://UI/ressources/grey_button11.png" id="5_tvcuv"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="6_swrng"]
 [ext_resource type="Script" path="res://UI/currencies_ui.gd" id="6_u6awm"]
+[ext_resource type="Texture2D" uid="uid://bx6y27p6q8i6b" path="res://UI/ressources/circle_up.tres" id="7_bqgti"]
+[ext_resource type="Texture2D" uid="uid://bbhxlel8pd2rj" path="res://UI/ressources/circle_down.tres" id="8_5ednf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w23ky"]
-
-[sub_resource type="Animation" id="Animation_1r7rh"]
-resource_name = "ui_shake_animation"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(-5, 0), Vector2(5, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(3, 3), Vector2(-7, 3), Vector2(13, 3), Vector2(-2, 3), Vector2(8, 3), Vector2(3, 3)]
-}
 
 [sub_resource type="Animation" id="Animation_738nm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:position")
+tracks/0/path = NodePath("gfx:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,6 +37,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_1r7rh"]
+resource_name = "ui_shake_animation"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gfx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(-5, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(-7, 3), Vector2(13, 3), Vector2(-2, 3), Vector2(8, 3), Vector2(3, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4esr2"]
@@ -116,7 +118,7 @@ icon = ExtResource("2_hnf4a")
 flat = true
 expand_icon = true
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="LeftUpgrades" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 2
@@ -131,7 +133,7 @@ theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 30
 columns = 2
 
-[node name="HealthUpgradeButton" type="Button" parent="GridContainer"]
+[node name="HealthUpgradeButton" type="Button" parent="LeftUpgrades"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -145,7 +147,7 @@ default_color = Color(0.438367, 0.318833, 0.290567, 1)
 mouse_over_color = Color(0.284604, 0.199722, 0.179679, 1)
 buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/HealthUpgradeButton"]
+[node name="gfx" type="NinePatchRect" parent="LeftUpgrades/HealthUpgradeButton"]
 modulate = Color(0.438367, 0.318833, 0.290567, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -159,7 +161,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HealthUpgradeButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftUpgrades/HealthUpgradeButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,28 +173,28 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="Label" parent="GridContainer/HealthUpgradeButton/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftUpgrades/HealthUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Vie"
 
-[node name="Level" type="Label" parent="GridContainer/HealthUpgradeButton/VBoxContainer"]
+[node name="Level" type="Label" parent="LeftUpgrades/HealthUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Niveau 0"
 
-[node name="Cost" type="Label" parent="GridContainer/HealthUpgradeButton/VBoxContainer"]
+[node name="Cost" type="Label" parent="LeftUpgrades/HealthUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Prix : 999 NaCl"
 
-[node name="Value" type="Label" parent="GridContainer/HealthUpgradeButton/VBoxContainer"]
+[node name="Value" type="Label" parent="LeftUpgrades/HealthUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Valeur : 420.69"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/HealthUpgradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftUpgrades/HealthUpgradeButton"]
 libraries = {
 "": SubResource("AnimationLibrary_4esr2")
 }
 
-[node name="ResistanceUpgradeButton" type="Button" parent="GridContainer"]
+[node name="ResistanceUpgradeButton" type="Button" parent="LeftUpgrades"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -205,7 +207,7 @@ default_color = Color(0.386887, 0.352614, 0.209032, 1)
 mouse_over_color = Color(0.243825, 0.220175, 0.121055, 1)
 buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/ResistanceUpgradeButton"]
+[node name="gfx" type="NinePatchRect" parent="LeftUpgrades/ResistanceUpgradeButton"]
 modulate = Color(0.386887, 0.352614, 0.209032, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -219,7 +221,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/ResistanceUpgradeButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftUpgrades/ResistanceUpgradeButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,28 +233,28 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="Label" parent="GridContainer/ResistanceUpgradeButton/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftUpgrades/ResistanceUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Resistance"
 
-[node name="Level" type="Label" parent="GridContainer/ResistanceUpgradeButton/VBoxContainer"]
+[node name="Level" type="Label" parent="LeftUpgrades/ResistanceUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Niveau 0"
 
-[node name="Cost" type="Label" parent="GridContainer/ResistanceUpgradeButton/VBoxContainer"]
+[node name="Cost" type="Label" parent="LeftUpgrades/ResistanceUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Prix : 999 NaCl"
 
-[node name="Value" type="Label" parent="GridContainer/ResistanceUpgradeButton/VBoxContainer"]
+[node name="Value" type="Label" parent="LeftUpgrades/ResistanceUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Valeur : 420.69"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/ResistanceUpgradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftUpgrades/ResistanceUpgradeButton"]
 libraries = {
 "": SubResource("AnimationLibrary_4esr2")
 }
 
-[node name="SpeedUpgradeButton" type="Button" parent="GridContainer"]
+[node name="SpeedUpgradeButton" type="Button" parent="LeftUpgrades"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -265,7 +267,7 @@ default_color = Color(0.247512, 0.372228, 0.428378, 1)
 mouse_over_color = Color(0.160552, 0.252707, 0.294086, 1)
 buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/SpeedUpgradeButton"]
+[node name="gfx" type="NinePatchRect" parent="LeftUpgrades/SpeedUpgradeButton"]
 modulate = Color(0.247512, 0.372228, 0.428378, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -279,7 +281,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/SpeedUpgradeButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftUpgrades/SpeedUpgradeButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,28 +293,28 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="Label" parent="GridContainer/SpeedUpgradeButton/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftUpgrades/SpeedUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Vitesse"
 
-[node name="Level" type="Label" parent="GridContainer/SpeedUpgradeButton/VBoxContainer"]
+[node name="Level" type="Label" parent="LeftUpgrades/SpeedUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Niveau 0"
 
-[node name="Cost" type="Label" parent="GridContainer/SpeedUpgradeButton/VBoxContainer"]
+[node name="Cost" type="Label" parent="LeftUpgrades/SpeedUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Prix : 999 NaCl"
 
-[node name="Value" type="Label" parent="GridContainer/SpeedUpgradeButton/VBoxContainer"]
+[node name="Value" type="Label" parent="LeftUpgrades/SpeedUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Valeur : 420.69"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/SpeedUpgradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftUpgrades/SpeedUpgradeButton"]
 libraries = {
 "": SubResource("AnimationLibrary_4esr2")
 }
 
-[node name="OtherUpgradeButton" type="Button" parent="GridContainer"]
+[node name="OtherUpgradeButton" type="Button" parent="LeftUpgrades"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -325,7 +327,7 @@ default_color = Color(0.325051, 0.375174, 0.220509, 1)
 mouse_over_color = Color(0.204621, 0.239524, 0.131387, 1)
 buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/OtherUpgradeButton"]
+[node name="gfx" type="NinePatchRect" parent="LeftUpgrades/OtherUpgradeButton"]
 modulate = Color(0.325051, 0.375174, 0.220509, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -339,7 +341,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/OtherUpgradeButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftUpgrades/OtherUpgradeButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,23 +353,287 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Name" type="Label" parent="GridContainer/OtherUpgradeButton/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftUpgrades/OtherUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Autre"
 
-[node name="Level" type="Label" parent="GridContainer/OtherUpgradeButton/VBoxContainer"]
+[node name="Level" type="Label" parent="LeftUpgrades/OtherUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Niveau 0"
 
-[node name="Cost" type="Label" parent="GridContainer/OtherUpgradeButton/VBoxContainer"]
+[node name="Cost" type="Label" parent="LeftUpgrades/OtherUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Prix : 999 NaCl"
 
-[node name="Value" type="Label" parent="GridContainer/OtherUpgradeButton/VBoxContainer"]
+[node name="Value" type="Label" parent="LeftUpgrades/OtherUpgradeButton/VBoxContainer"]
 layout_mode = 2
 text = "Valeur : 420.69"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/OtherUpgradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftUpgrades/OtherUpgradeButton"]
+libraries = {
+"": SubResource("AnimationLibrary_4esr2")
+}
+
+[node name="RightUpgrades" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -310.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="SkillUpgradeButton" type="Button" parent="RightUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
+flat = true
+expand_icon = true
+script = ExtResource("3_frgtn")
+button_up_icon = ExtResource("7_bqgti")
+button_down_icon = ExtResource("8_5ednf")
+default_color = Color(0.569413, 0.262901, 0.25624, 1)
+mouse_over_color = Color(0.356332, 0.150129, 0.146228, 1)
+buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+
+[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton"]
+modulate = Color(0.569413, 0.262901, 0.25624, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bqgti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
+layout_mode = 2
+text = "skill"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
+layout_mode = 2
+text = "Niveau 0"
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
+layout_mode = 2
+text = "Prix : 999 NaCl"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
+layout_mode = 2
+text = "blabla"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton"]
+libraries = {
+"": SubResource("AnimationLibrary_4esr2")
+}
+
+[node name="SkillUpgradeButton2" type="Button" parent="RightUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
+flat = true
+expand_icon = true
+script = ExtResource("3_frgtn")
+button_up_icon = ExtResource("7_bqgti")
+button_down_icon = ExtResource("8_5ednf")
+default_color = Color(0.540449, 0.234037, 0.497754, 1)
+mouse_over_color = Color(0.362643, 0.142034, 0.332402, 1)
+buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+
+[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton2"]
+modulate = Color(0.540449, 0.234037, 0.497754, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bqgti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
+layout_mode = 2
+text = "skill"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
+layout_mode = 2
+text = "Niveau 0"
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
+layout_mode = 2
+text = "Prix : 999 NaCl"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
+layout_mode = 2
+text = "blabla"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton2"]
+libraries = {
+"": SubResource("AnimationLibrary_4esr2")
+}
+
+[node name="SkillUpgradeButton3" type="Button" parent="RightUpgrades"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
+flat = true
+expand_icon = true
+script = ExtResource("3_frgtn")
+button_up_icon = ExtResource("7_bqgti")
+button_down_icon = ExtResource("8_5ednf")
+default_color = Color(0.413972, 0.424788, 0.441254, 1)
+mouse_over_color = Color(0.241643, 0.249188, 0.260675, 1)
+buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+
+[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton3"]
+modulate = Color(0.413972, 0.424788, 0.441254, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bqgti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
+layout_mode = 2
+text = "skill"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
+layout_mode = 2
+text = "Niveau 0"
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
+layout_mode = 2
+text = "Prix : 999 NaCl"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
+layout_mode = 2
+text = "blabla"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton3"]
+libraries = {
+"": SubResource("AnimationLibrary_4esr2")
+}
+
+[node name="SkillUpgradeButton4" type="Button" parent="RightUpgrades"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
+flat = true
+expand_icon = true
+script = ExtResource("3_frgtn")
+button_up_icon = ExtResource("7_bqgti")
+button_down_icon = ExtResource("8_5ednf")
+default_color = Color(2.45467e-06, 0.412855, 0.510963, 1)
+mouse_over_color = Color(6.73831e-07, 0.20348, 0.257682, 1)
+buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+
+[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton4"]
+modulate = Color(2.45467e-06, 0.412855, 0.510963, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bqgti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
+layout_mode = 2
+text = "skill"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
+layout_mode = 2
+text = "Niveau 0"
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
+layout_mode = 2
+text = "Prix : 999 NaCl"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
+layout_mode = 2
+text = "blabla"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton4"]
 libraries = {
 "": SubResource("AnimationLibrary_4esr2")
 }
@@ -410,6 +676,6 @@ text = "O- : 150"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="GridContainer/HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
-[connection signal="pressed" from="GridContainer/ResistanceUpgradeButton" to="." method="_on_resistance_upgrade_button_pressed"]
-[connection signal="pressed" from="GridContainer/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_pressed"]
+[connection signal="pressed" from="LeftUpgrades/HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
+[connection signal="pressed" from="LeftUpgrades/ResistanceUpgradeButton" to="." method="_on_resistance_upgrade_button_pressed"]
+[connection signal="pressed" from="LeftUpgrades/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_pressed"]
