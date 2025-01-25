@@ -42,10 +42,10 @@ func refill(quantity: float):
 	stock -= quantity
 
 func lose_air_check_die(delta: float):
-	print(stock)
 	air = move_toward(air, 0, AIR_LOSE_RATE * delta)
 	air = min(air, AIR_MAX)
-	if air < AIR_MIN:
+	
+	if air < AIR_MIN: # use air in stock if possible (to avoid dying)
 		refill(AIR_MIN - air)
 	return air < AIR_MIN
 
@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	var use_stock := Input.is_action_pressed("air")
+	
 	if use_stock:
 		refill(REFILL_SPEED * delta)
 	
