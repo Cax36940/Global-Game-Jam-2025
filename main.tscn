@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=7 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_5cdx7"]
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
 [ext_resource type="PackedScene" uid="uid://b8aamx2rsae2k" path="res://assets/rock_background.tscn" id="3_poyp4"]
+[ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://na_coin.tscn" id="5_fdfmh"]
+[ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://plastic.tscn" id="6_62wwo"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -32,3 +34,18 @@ texture = ExtResource("1_5cdx7")
 
 [node name="RockBackground" parent="." instance=ExtResource("3_poyp4")]
 position = Vector2(-640, -360)
+
+[node name="NaCoin" parent="." instance=ExtResource("5_fdfmh")]
+position = Vector2(195, -325)
+
+[node name="NaCoin2" parent="." instance=ExtResource("5_fdfmh")]
+position = Vector2(-195, -471)
+
+[node name="Plastic" parent="." instance=ExtResource("6_62wwo")]
+position = Vector2(-147, -305)
+
+[node name="Plastic2" parent="." instance=ExtResource("6_62wwo")]
+position = Vector2(67, -247)
+
+[node name="Plastic3" parent="." instance=ExtResource("6_62wwo")]
+position = Vector2(83, -603)
