@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bep6h86si6a"]
+
+[ext_resource type="Script" path="res://collectibles/bubblita.gd" id="1_4jjjg"]
+[ext_resource type="Texture2D" uid="uid://bbsonia0sl3il" path="res://collectibles/bubblita.png" id="1_ydjni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tb2w8"]
+radius = 13.0
+
+[node name="Bubblita" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_4jjjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.54747e-13, -1.19209e-07)
+scale = Vector2(0.0574325, 0.0574325)
+texture = ExtResource("1_ydjni")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tb2w8")
