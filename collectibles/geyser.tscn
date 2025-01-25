@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciu31gt3qvncu"]
+[gd_scene load_steps=3 format=3 uid="uid://cjkjqugu7ras3"]
 
 [ext_resource type="Script" path="res://collectibles/geyser.gd" id="1_ksdyl"]
 [ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_swd4b"]

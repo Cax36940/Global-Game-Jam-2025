@@ -99,9 +99,6 @@ func _process(delta: float) -> void:
 			if mouse_colliding and (blob_points[i] - mouse_pos + position).length() < 50:
 				blob_points[i] = set_distance(blob_points[i], mouse_pos - position, 50)
 			
-			#if (blob_points[i] - position).length() > 150:
-			#	blob_points[i] = set_distance(blob_points[i], position, 150)
-	
 	# Apply Verlet Integration
 	for i in range(points):
 		verlet_integrate_blob(i)
@@ -142,3 +139,19 @@ func _input(event):
 func set_speed_force(new_speed_force : Vector2):
 	speed_force.y = move_toward(speed_force.y, new_speed_force.y, 1)
 	speed_force.x = new_speed_force.x * 0.05
+
+func get_polygon_points() -> Array[Vector2]:
+	return blob_points
+
+func nearest_index(local_position : Vector2) -> int :
+	var dist_min : float = 100000;
+	var ret : int = 0
+	for i in range(blob_points.size()):
+		var current_dist = (blob_points[i] * global_scale + global_position - local_position).length()
+		if current_dist < dist_min:
+			ret = i
+			dist_min = current_dist
+	return ret
+
+func get_point_position(i : int) -> Vector2 :
+	return blob_points[i%points] + position

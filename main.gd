@@ -7,6 +7,6 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2
 	$RockBackground.position.x = $Bubble.position.x - get_viewport_rect().size.x / 2
