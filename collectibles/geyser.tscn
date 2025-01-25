@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciu31gt3qvncu"]
+
+[ext_resource type="Script" path="res://collectibles/geyser.gd" id="1_ksdyl"]
+[ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="1_swd4b"]
+
+[node name="Geyser" type="Node2D"]
+position = Vector2(709, 563)
+script = ExtResource("1_ksdyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(17, 59)
+scale = Vector2(0.195312, 0.960938)
+skew = -0.280998
+texture = ExtResource("1_swd4b")
