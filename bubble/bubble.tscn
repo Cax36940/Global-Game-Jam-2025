@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://gbcb6vfrmeku"]
 
 [ext_resource type="Script" path="res://bubble/bubble.gd" id="1_jhrmi"]
-[ext_resource type="Texture2D" uid="uid://7krt6hywy24k" path="res://icon.svg" id="2_e0gfu"]
+[ext_resource type="PackedScene" uid="uid://idkbtuevxpcd" path="res://bubble/bubble_sprite.tscn" id="3_k1ojm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orsfs"]
 radius = 85.0059
@@ -12,88 +12,6 @@ script = ExtResource("1_jhrmi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_orsfs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.00001, -70)
-scale = Vector2(0.648438, 0.09375)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D10" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-1.5, -79)
-scale = Vector2(0.367187, 0.046875)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D14" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-1, 78.5)
-scale = Vector2(0.367187, 0.0546875)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.19209e-07, 69)
-scale = Vector2(0.648438, 0.09375)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(70.625, -1.90735e-06)
-scale = Vector2(0.0996094, 0.554687)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-71.625, -1.90735e-06)
-scale = Vector2(0.115234, 0.554687)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-66.8125, 42.125)
-scale = Vector2(0.0498046, 0.107422)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D8" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-68, -42)
-scale = Vector2(0.0498046, 0.107422)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D9" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-44.9063, -67.0625)
-scale = Vector2(0.0639647, 0.0458984)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D11" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(45.9531, -66.5312)
-scale = Vector2(0.0476074, 0.0385742)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D12" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(68.4766, -39.2656)
-scale = Vector2(0.0706787, 0.0583496)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D13" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(69, 39)
-scale = Vector2(0.0706787, 0.0583496)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D15" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(44.7383, 67.1328)
-scale = Vector2(0.0509644, 0.0447998)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D16" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-45.3691, 67.0664)
-scale = Vector2(0.0567322, 0.0458374)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-81.5, -0.5)
-scale = Vector2(0.0390625, 0.320312)
-texture = ExtResource("2_e0gfu")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(79, -1)
-scale = Vector2(0.0390625, 0.320312)
-texture = ExtResource("2_e0gfu")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BubbleSprite" parent="." instance=ExtResource("3_k1ojm")]

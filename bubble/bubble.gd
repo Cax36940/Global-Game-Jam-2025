@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var bubble_sprite = $BubbleSprite
 
 const AIR_MIN = 0.1 # bubble pop size
 const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
@@ -51,5 +51,7 @@ func _physics_process(delta: float) -> void:
 		vspeed = 0
 		# TODO : pop !
 		# TODO : end day
-		
-	get_node("../RockBackground").set_velocity(-velocity)
+	
+	if(has_node("../RockBackground")):
+		get_node("../RockBackground").set_velocity(-velocity)
+	bubble_sprite.set_speed_force(-velocity)

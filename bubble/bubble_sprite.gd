@@ -20,6 +20,9 @@ var normals: Array[Vector2]
 var mouse_pos: Vector2
 var mouse_colliding: bool = false
 
+var speed_force : Vector2 = Vector2.ZERO
+const MAX_SPEED_FORCE : float = 300.0
+
 func _ready() -> void:
 	area = radius * radius * PI
 	circumference = radius * 2 * PI
@@ -33,7 +36,7 @@ func _ready() -> void:
 	
 	# Create the initial shape
 	for i in range(points):
-		var delta = Vector2(radius, 0).rotated(deg_to_rad((360 / points) * i))
+		var delta = Vector2(radius, 0).rotated(deg_to_rad((360. / points) * i))
 		blob_points.push_back(global_position + delta)
 		blob_initial_points.push_back(global_position + delta)
 		blob_old_points.push_back(global_position + delta)
@@ -67,7 +70,10 @@ func _process(delta: float) -> void:
 		
 		# Compute area difference and dilation
 		var current_area = blob_area()
-		var delta_area = area - current_area if current_area < area * 2 else 0
+		var delta_area : float = 0
+		if current_area < area * 1.5 :
+			delta_area = area - current_area
+			
 		var dilation_distance = delta_area / circumference
 		
 		# Apply dilation
@@ -90,18 +96,22 @@ func _process(delta: float) -> void:
 		
 		# Collision handling
 		for i in range(points):
-			if mouse_colliding and (blob_points[i] - mouse_pos + global_position).length() < 50:
-				blob_points[i] = set_distance(blob_points[i], mouse_pos - global_position, 50)
+			if mouse_colliding and (blob_points[i] - mouse_pos + position).length() < 50:
+				blob_points[i] = set_distance(blob_points[i], mouse_pos - position, 50)
 			
-			if (blob_points[i] - global_position).length() > 150:
-				blob_points[i] = set_distance(blob_points[i], global_position, 150)
+			#if (blob_points[i] - position).length() > 150:
+			#	blob_points[i] = set_distance(blob_points[i], position, 150)
 	
 	# Apply Verlet Integration
 	for i in range(points):
 		verlet_integrate_blob(i)
-		blob_points[i] += (blob_initial_points[i] - blob_points[i]) * delta
-		#blob_points[i] += Vector2(0, min(1, delta * 30))  # Apply gravity
-	
+		blob_points[i] += (blob_initial_points[i] - blob_points[i]) * delta * 0.5
+		if speed_force.length() > MAX_SPEED_FORCE :
+			speed_force = MAX_SPEED_FORCE * speed_force.normalized()
+		var force : Vector2 = ((blob_initial_points[i].y + radius) / (radius)) * speed_force
+		blob_points[i] += force * delta
+
+	position.y = min((blob_initial_points[int(3*points/4.)] - blob_points[int(3*points/4.)]).y, 0)
 	blob.polygon = blob_points
 	blob_outline.points = blob_points
 	
@@ -115,10 +125,10 @@ func set_distance(current_point: Vector2, anchor: Vector2, distance: float) -> V
 	return anchor + to_anchor
 
 func blob_area() -> float:
-	var area = 0.0
+	var current_area = 0.0
 	for i in range(len(blob_points) - 1):
-		area += blob_points[i].x * blob_points[i + 1].y - blob_points[i + 1].x * blob_points[i].y
-	return abs(area) / 2.0
+		current_area += blob_points[i].x * blob_points[i + 1].y - blob_points[i + 1].x * blob_points[i].y
+	return abs(current_area) / 2.0
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -128,3 +138,7 @@ func _input(event):
 			mouse_colliding = true
 		else:
 			mouse_colliding = false
+
+func set_speed_force(new_speed_force : Vector2):
+	speed_force.y = move_toward(speed_force.y, new_speed_force.y, 1)
+	speed_force.x = new_speed_force.x * 0.05

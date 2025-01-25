@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://bubble/bubble_sprite.gd" id="1_tdfyk"]
 
-[node name="BlobSimulation" type="Node2D"]
+[node name="BubbleSprite" type="Node2D"]
 script = ExtResource("1_tdfyk")
 
 [node name="Blob" type="Polygon2D" parent="."]
