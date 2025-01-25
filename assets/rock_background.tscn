@@ -1,14 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxh87mcfeuxmc"]
+[gd_scene load_steps=2 format=3 uid="uid://bhhbhaooy2iay"]
 
 [ext_resource type="Script" path="res://assets/rock_background.gd" id="1_hcsqu"]
 
 [node name="RockBackground" type="Node2D"]
 script = ExtResource("1_hcsqu")
-
-[node name="LeftRock" type="Polygon2D" parent="."]
-position = Vector2(-3, -1)
-color = Color(0.331832, 0.378866, 0.472995, 1)
-
-[node name="RightRock" type="Polygon2D" parent="."]
-position = Vector2(-6, -2)
-color = Color(0.331832, 0.378866, 0.472995, 1)
