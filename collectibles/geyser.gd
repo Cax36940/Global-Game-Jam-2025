@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const BUBBLITA_PER_SEC = 4.0
+const BUBBLITA_PER_SEC = 2.0
 var bubblita_scence = preload("res://collectibles/bubblita.tscn")
 var initial_bubblita_mean_speed = Vector2(0, 0)
 
