@@ -11,6 +11,12 @@ func _init(_na, _cl, _h, _o) -> void:
 	self.h = _h
 	self.o = _o
 
+func add_self(value: Currency) -> void:
+	self.na += value.na
+	self.cl += value.cl
+	self.h += value.h
+	self.o += value.o
+
 static func multiply(c: Currency, f: int) -> Currency:
 	return Currency.new(c.na*f, c.cl*f, c.h*f, c.o*f)
 
