@@ -11,13 +11,12 @@ func _ready() -> void:
 		var depth_coef : float = first_layer_depth / (first_layer_depth + (i-1) * layer_spacing)
 		var instance = rock_layer.instantiate()
 		var width = viewport_half_width - depth_coef * (viewport_half_width - 100)
-		instance.set_width(width + 100)
+		instance.set_width(width + 150)
 		instance.set_velocity_factor(depth_coef)
 		var color : Color = Color.from_hsv(0.6, 0.5, 0.6 - 0.05 * i)
 		instance.set_color(color)
 		instance.z_index = -2*i
 		add_child(instance)
-		
 		
 	generate_worm()
 	pass # Replace with function body.
@@ -34,7 +33,6 @@ func generate_worm():
 	instance.position.x = randf_range(-100, 600)
 	instance.position.y = randf_range(-1000, 0)
 	instance.z_index = randi_range(-2, -24)
-	instance.set_velocity(Vector2(0, 100))
 	instance.set_velocity_factor(first_layer_depth / (first_layer_depth + (-instance.z_index/2) * layer_spacing))
 	add_child(instance)
 	generate_worm()

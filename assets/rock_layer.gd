@@ -13,7 +13,7 @@ var velocity_factor : float = 1.0 # factor to account for depth of the layer
 var y_offset : float = 0.0
 var begin_y : float = -200.0
 var end_y : float
-var width : float = 2000.0
+var width : float = 200.0
 
 var spacing : float = 20.0
 var init_global_position : Vector2 = Vector2.ZERO
