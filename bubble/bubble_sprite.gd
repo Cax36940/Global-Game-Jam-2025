@@ -142,3 +142,6 @@ func _input(event):
 func set_speed_force(new_speed_force : Vector2):
 	speed_force.y = move_toward(speed_force.y, new_speed_force.y, 1)
 	speed_force.x = new_speed_force.x * 0.05
+
+func get_polygon_points() -> Array[Vector2]:
+	return blob_points
