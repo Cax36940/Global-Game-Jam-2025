@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	gradient = Gradient.new()
 	gradient.set_color(0, Color.from_hsv(hue, sat, val))
-	gradient.set_color(1, Color.from_hsv(hue, sat/10, val))
+	gradient.set_color(1, Color.from_hsv(hue, sat/5, val))
 	
 	total_time = randf_range(0.0, 2 * PI / SPEED)
 	
@@ -40,8 +40,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	total_time += delta
-	velocity.x = cos(total_time * SPEED) / ((20 - number_point))
+	velocity.x = cos(total_time * SPEED) / 5
 	velocity.y = sqrt(1 - velocity.x ** 2)
 	
 	virtual_position[0] = virtual_position[0] + velocity * SPEED
@@ -51,6 +52,4 @@ func _process(delta: float) -> void:
 	for i in range(1, number_point):
 		virtual_position[i] = virtual_position[i-1] + JOINT_LENGTH * (virtual_position[i] - virtual_position[i-1]).normalized()
 		set_point_position(i, virtual_position[i] - position_offset)
-	 
-	
 	pass

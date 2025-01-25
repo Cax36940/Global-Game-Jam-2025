@@ -15,6 +15,6 @@ func _process(_delta: float) -> void:
 	
 func generate_worm():
 	var instance = algue_scene.instantiate()
-	instance.position.x = randf_range(0, get_viewport_rect().size.x)
+	instance.position.x = randf_range(-100, get_viewport_rect().size.x + 100)
 	instance.position.y = get_viewport_rect().size.y - randf_range(-20, 0)
 	add_child(instance)
