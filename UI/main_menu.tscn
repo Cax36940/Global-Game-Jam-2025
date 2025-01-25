@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://crrdhjk1k1mk2" path="res://UI/ressources/grey_button10.png" id="4_dgnge"]
 [ext_resource type="Texture2D" uid="uid://b3dkbeyddh4qn" path="res://UI/ressources/grey_button11.png" id="5_tvcuv"]
 [ext_resource type="Script" path="res://UI/currencies_ui.gd" id="6_u6awm"]
-[ext_resource type="Texture2D" uid="uid://bx6y27p6q8i6b" path="res://UI/ressources/circle_up.tres" id="7_bqgti"]
-[ext_resource type="Texture2D" uid="uid://bbhxlel8pd2rj" path="res://UI/ressources/circle_down.tres" id="8_5ednf"]
+[ext_resource type="Texture2D" uid="uid://cmkstngmatmne" path="res://UI/ressources/circle_up.tres" id="7_bqgti"]
+[ext_resource type="Texture2D" uid="uid://c2yelwilf2213" path="res://UI/ressources/circle_down.tres" id="8_5ednf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w23ky"]
 
@@ -87,13 +87,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -345.0
-offset_top = 19.0
+offset_top = 59.0
 offset_right = 345.0
-offset_bottom = 102.0
+offset_bottom = 142.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.462745, 0.882353, 0.937255, 1)
 theme_override_font_sizes/font_size = 60
-text = "Bubble"
+text = "¤"
 horizontal_alignment = 1
 vertical_alignment = 1
 
