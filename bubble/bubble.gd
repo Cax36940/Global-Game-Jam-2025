@@ -21,13 +21,18 @@ var stock_capacity = 0.1 # air stock capacity (1.0 = AIR_MAX) (between 0 and STO
 var stock = 0.1 # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 
-var can_move = false
+signal bubble_died
 
-func set_can_move(value: bool):
-	can_move = value
+func set_can_update(value: bool):
+	set_physics_process(value)
+	set_process(value)
 
 func reset():
 	pass # mettre tout aux valeurs initiales (link to ui)
+
+
+func _ready() -> void:
+	bubble_died.connect(reset)
 
 
 func adjust_size(delta: float):
@@ -50,15 +55,15 @@ func lose_air_check_die(delta: float):
 	return air < AIR_MIN
 
 func _process(delta: float) -> void:
-	if !can_move: return
 	
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed = 0
 		velocity = Vector2.ZERO
 		pop()
-		set_physics_process(false)
-		set_process(false)
+		set_can_update(false)
+		var timer = get_tree().create_timer(2)
+		timer.timeout.connect(func (): bubble_died.emit())
 		# TODO : end day
 	
 	if(has_node("../RockBackground")):
@@ -69,8 +74,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !can_move: return
-		
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")

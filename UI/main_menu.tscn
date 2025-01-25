@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cn0uxrgx4pdie"]
+[gd_scene load_steps=16 format=3 uid="uid://cn0uxrgx4pdie"]
 
 [ext_resource type="Script" path="res://UI/main_ui.gd" id="1_vl84j"]
 [ext_resource type="Texture2D" uid="uid://b5q0xbhlk14tx" path="res://UI/ressources/exit.png" id="2_hnf4a"]
 [ext_resource type="Script" path="res://UI/upgrade_button.gd" id="3_frgtn"]
 [ext_resource type="Texture2D" uid="uid://crrdhjk1k1mk2" path="res://UI/ressources/grey_button10.png" id="4_dgnge"]
 [ext_resource type="Texture2D" uid="uid://b3dkbeyddh4qn" path="res://UI/ressources/grey_button11.png" id="5_tvcuv"]
-[ext_resource type="Script" path="res://bubble/player_data.gd" id="6_swrng"]
 [ext_resource type="Script" path="res://UI/currencies_ui.gd" id="6_u6awm"]
 [ext_resource type="Texture2D" uid="uid://bx6y27p6q8i6b" path="res://UI/ressources/circle_up.tres" id="7_bqgti"]
 [ext_resource type="Texture2D" uid="uid://bbhxlel8pd2rj" path="res://UI/ressources/circle_down.tres" id="8_5ednf"]
@@ -82,9 +81,6 @@ _data = {
 
 [node name="MainUI" type="CanvasLayer"]
 script = ExtResource("1_vl84j")
-
-[node name="PlayerDataDummy" type="Node" parent="."]
-script = ExtResource("6_swrng")
 
 [node name="GameTitle" type="Label" parent="."]
 anchors_preset = 5

@@ -12,4 +12,4 @@ func set_currencies_txt(wallet: Currency) -> void:
 func _ready() -> void:
 	if PlayerData.singleton != null:
 		PlayerData.singleton.wallet_changed.connect(set_currencies_txt)
-	set_currencies_txt(PlayerData.singleton.wallet)
+		set_currencies_txt(PlayerData.singleton.wallet)

@@ -8,6 +8,7 @@ var wallet: Currency
 
 signal wallet_changed
 
+
 func _ready() -> void:
 	
 	if singleton != null:
