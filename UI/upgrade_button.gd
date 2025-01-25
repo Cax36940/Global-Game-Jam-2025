@@ -18,8 +18,8 @@ func _ready() -> void:
 	self.focus_exited.connect(_on_mouse_exited)
 	$AnimationPlayer.animation_finished.connect(_on_animation_player_animation_finished)
 	
-	$NinePatchRect.modulate = default_color
-	$NinePatchRect.texture = button_up_icon
+	$gfx.modulate = default_color
+	$gfx.texture = button_up_icon
 
 
 func set_upgrade_txt(cost: Currency, lvl: int, value: float):
@@ -31,33 +31,33 @@ func set_upgrade_txt(cost: Currency, lvl: int, value: float):
 var _is_animating = false
 func buy_fail_animation() -> void:
 	_is_animating = true
-	$NinePatchRect.modulate = buy_fail_color
+	$gfx.modulate = buy_fail_color
 	
 	$AnimationPlayer.play("ui_shake_animation")
 
 
 func _on_mouse_entered() -> void:
 	if _is_animating: return
-	$NinePatchRect.modulate = mouse_over_color
+	$gfx.modulate = mouse_over_color
 
 
 func _on_mouse_exited() -> void:
 	if _is_animating: return
-	$NinePatchRect.modulate = default_color
+	$gfx.modulate = default_color
 
 
 func _on_button_down() -> void:
-	$NinePatchRect.texture = button_down_icon
+	$gfx.texture = button_down_icon
 
 
 func _on_button_up() -> void:
-	$NinePatchRect.texture = button_up_icon
+	$gfx.texture = button_up_icon
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	var tween = get_tree().create_tween()
 	if is_hovered() or has_focus():
-		tween.tween_property($NinePatchRect, "modulate", mouse_over_color, .5)
+		tween.tween_property($gfx, "modulate", mouse_over_color, .5)
 	else:
-		tween.tween_property($NinePatchRect, "modulate", default_color, .5)
+		tween.tween_property($gfx, "modulate", default_color, .5)
 	_is_animating = false
