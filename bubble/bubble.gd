@@ -22,22 +22,26 @@ func lose_air_check_die(delta: float):
 	air = move_toward(air, AIR_MIN, air_lose_rate*delta)
 	return air <= AIR_MIN
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	var die = lose_air_check_die(delta)
+	if die:
+		vspeed = 0
+		velocity = Vector2.ZERO
+		pop()
+		set_physics_process(false)
+		set_process(false)
+		# TODO : pop !
+		# TODO : end day
+	
 	if(has_node("../RockBackground")):
 		get_node("../RockBackground").set_velocity(-velocity)
 	bubble_sprite.set_speed_force(-velocity)
 	bubble_collision.shape.segments = bubble_sprite.get_polygon_points()
 	bubble_collision.position.y = bubble_sprite.position.y
+
 	
 func _physics_process(delta: float) -> void:
 	
-	var die = lose_air_check_die(delta)
-	if die:
-		vspeed = 0
-		pop()
-		return
-		# TODO : pop !
-		# TODO : end day
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

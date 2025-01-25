@@ -10,6 +10,8 @@ var length: float
 @onready var blob: Polygon2D = $Blob
 @onready var blob_outline : Line2D = $BlobOutline
 
+var part_scene = preload("res://bubble/bubble_part.tscn")
+
 var blob_initial_points : Array[Vector2]
 var blob_points : Array[Vector2]
 var blob_old_points : Array[Vector2]
@@ -155,3 +157,14 @@ func nearest_index(local_position : Vector2) -> int :
 
 func get_point_position(i : int) -> Vector2 :
 	return blob_points[i%points] + position
+
+func pop():
+	var part_position : Vector2 = Vector2.ZERO
+	for i in range(blob_points.size()):
+		part_position += blob_points[i]
+		var instance = part_scene.instantiate()
+		instance.setup(blob_points[i].normalized(), blob.color, blob_outline.default_color)
+		$ParticuleContainer.add_child(instance)
+	$ParticuleContainer.position = part_position / blob_points.size()
+	blob.visible = false
+	blob_outline.visible = false

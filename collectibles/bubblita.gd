@@ -18,8 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	velocity.x += randfn(0.0, 0.2) * HSPEED_VARIATION
 	velocity.y += randfn(0.0, 0.1) * VSPEED_VARIATION
-	position.x += velocity.x
-	position.y += velocity.y
+	position += velocity * delta * 60
 	if Time.get_ticks_msec() > end_time:
 		pop()
 
