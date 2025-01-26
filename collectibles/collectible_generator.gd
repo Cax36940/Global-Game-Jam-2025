@@ -47,16 +47,20 @@ func generate_collectible() -> void :
 		generate_collectible()
 		return
 	
-	var instance_position : Vector2 = get_node("../Bubble").position
-	instance_position.x += get_node("../Bubble").HSPEED * get_node("../Bubble").hspeed_mult * randf_range(-3, 3)
-	instance_position.y += 100 + min(get_node("../Bubble").velocity.y, -50) * 20
+	var bubble = get_node("../Bubble")
+	var instance_position : Vector2 = bubble.position
+	var instance_velocity : Vector2 = Vector2(0, bubble.velocity.y)
+	instance_position.x += bubble.HSPEED * bubble.hspeed_mult * randf_range(-3, 3)
+	instance_position.y += 100 + min(bubble.velocity.y, -50) * 2
+	instance_velocity.y *= randf_range(0.4, 0.6)
 
 	random_int -= na_space
 	
 	if random_int <= 0 :
 		var instance : Node2D = na_scene.instantiate()
-		instance.position = instance_position
 		$NaCoins.add_child(instance)
+		instance.position = instance_position
+		instance.velocity = instance_velocity
 		generate_collectible()
 		return
 	
@@ -64,8 +68,9 @@ func generate_collectible() -> void :
 	
 	if random_int <= 0 :
 		var instance : Node2D = cl_scene.instantiate()
-		instance.position = instance_position
 		$ClCoins.add_child(instance)
+		instance.position = instance_position
+		instance.velocity = instance_velocity
 		generate_collectible()
 		return
 	
@@ -73,8 +78,9 @@ func generate_collectible() -> void :
 	
 	if random_int <= 0 :
 		var instance : Node2D = nacl_scene.instantiate()
-		instance.position = instance_position
 		$NaClCoins.add_child(instance)
+		instance.position = instance_position
+		instance.velocity = instance_velocity
 		generate_collectible()
 		return
 	

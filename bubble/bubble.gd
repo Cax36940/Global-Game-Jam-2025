@@ -113,8 +113,8 @@ func start() -> void:
 	$BubbleSprite.reset()
 	if inflation > 0.9:
 		inflation = 1.0
-		air = get_air_inflation()
-		scale = Vector2(5*air, 5*air)
+	air = get_air_inflation()
+	scale = Vector2(5*air, 5*air)
 
 
 func pop():
