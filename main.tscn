@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=14 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dlflnk77rhqpf" path="res://collectibles/collectible_generator.tscn" id="12_dg7p0"]
 [ext_resource type="FontFile" uid="uid://bcq74n3ghthmp" path="res://7-segments-display.ttf" id="12_p54j2"]
 [ext_resource type="PackedScene" uid="uid://dfhk1hbf0eu4d" path="res://bubble/stock_indicator.tscn" id="12_sk3ya"]
+[ext_resource type="PackedScene" uid="uid://boyjiskcu6yuo" path="res://collectibles/obstacle.tscn" id="13_76f40"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -27,7 +28,7 @@ position = Vector2(-960, -540)
 [node name="Plastics" type="Node2D" parent="."]
 
 [node name="Plastic" parent="Plastics" instance=ExtResource("6_62wwo")]
-position = Vector2(-147, -305)
+position = Vector2(-81, -257)
 
 [node name="Plastic2" parent="Plastics" instance=ExtResource("6_62wwo")]
 position = Vector2(67, -247)
@@ -80,3 +81,6 @@ offset_right = 1077.0
 offset_bottom = 18.0
 
 [node name="CollectibleGenerator" parent="." instance=ExtResource("12_dg7p0")]
+
+[node name="Obstacle" parent="." instance=ExtResource("13_76f40")]
+position = Vector2(-53, -365)
