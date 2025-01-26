@@ -52,7 +52,7 @@ func generate_collectible() -> void :
 	var instance_velocity : Vector2 = Vector2(0, bubble.velocity.y)
 	instance_position.x += bubble.HSPEED * bubble.hspeed_mult * randf_range(-3, 3)
 	instance_position.y += 100 + min(bubble.velocity.y, -50) * 2
-	instance_velocity.y *= randf_range(0.4, 0.8)
+	instance_velocity.y *= randf_range(0.4, 0.6)
 
 	random_int -= na_space
 	
