@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn0uxrgx4pdie"]
+[gd_scene load_steps=29 format=3 uid="uid://cn0uxrgx4pdie"]
 
 [ext_resource type="Script" path="res://UI/main_ui.gd" id="1_vl84j"]
 [ext_resource type="Texture2D" uid="uid://b5q0xbhlk14tx" path="res://UI/ressources/exit.png" id="2_hnf4a"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://ynw2b0pcek6w" path="res://UI/ressources/panel-transparent-border-013.png" id="10_8puxi"]
 [ext_resource type="Texture2D" uid="uid://e4c6kupeixx0" path="res://collectibles/na.png" id="10_s8b43"]
 [ext_resource type="Texture2D" uid="uid://7gkbjv8xece1" path="res://collectibles/cl.png" id="11_usmmi"]
+[ext_resource type="Texture2D" uid="uid://d0708hox0cpm3" path="res://UI/ressources/H.png" id="12_8qioy"]
+[ext_resource type="Texture2D" uid="uid://cykfbv3le8msk" path="res://UI/ressources/O.png" id="13_3mgga"]
 [ext_resource type="Texture2D" uid="uid://d0p5lefw3s6uv" path="res://UI/ressources/grey_button08.png" id="13_pvs2w"]
 [ext_resource type="Texture2D" uid="uid://bjt6bbk6crpjt" path="res://UI/ressources/grey_button09.png" id="14_6rtxk"]
 
@@ -794,6 +796,7 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Currencies/HBoxContainer3"]
 layout_mode = 2
+texture = ExtResource("12_8qioy")
 expand_mode = 3
 
 [node name="H+" type="Label" parent="Currencies/HBoxContainer3"]
@@ -816,6 +819,7 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Currencies/HBoxContainer4"]
 layout_mode = 2
+texture = ExtResource("13_3mgga")
 expand_mode = 3
 
 [node name="O-" type="Label" parent="Currencies/HBoxContainer4"]
