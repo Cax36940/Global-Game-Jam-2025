@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://p1cjbc3a0h4d"]
+[gd_scene load_steps=5 format=3 uid="uid://dbqeoh5b8xkc4"]
 
 [ext_resource type="Script" path="res://collectibles/salt_coin.gd" id="1_25nqt"]
 [ext_resource type="AudioStream" uid="uid://c5rnpdsi7gige" path="res://sfx/multi-pop.mp3" id="3_ifgfo"]
-[ext_resource type="PackedScene" uid="uid://dohj50a5so463" path="res://collectibles/salt_sprite.tscn" id="4_qw002"]
+[ext_resource type="PackedScene" uid="uid://q5yax87k1bjm" path="res://collectibles/salt_sprite.tscn" id="4_qw002"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wlyq5"]
 radius = 20.0
