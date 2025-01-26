@@ -82,7 +82,7 @@ func refill(quantity: float):
 
 
 func lose_air_check_die(delta: float) -> bool:
-	#air = move_toward(air, 0, AIR_LOSE_RATE * delta)
+	air = move_toward(air, 0, AIR_LOSE_RATE * delta)
 	
 	if air < AIR_MIN: # use air in stock if possible (to avoid dying)
 		refill(AIR_MIN - air)

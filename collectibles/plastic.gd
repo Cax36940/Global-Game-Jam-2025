@@ -42,10 +42,10 @@ func _process(delta: float) -> void:
 
 func detach():
 	is_on_bubble = false
+	scale = global_scale
 	reparent(get_node("/root/main/Plastics"))
 	position.y += randf_range(-50, -30)
 	position.x += 20 * randfn(0.0, 2.0)
-	scale = Vector2.ONE
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# touch bubble
