@@ -15,8 +15,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not is_on_bubble:
 		rotation_degrees = sin(Time.get_ticks_msec() / (1000.0 * PERIOD) + phase) * MAX_ANGLE
-	else :
+	else:
 		position = get_node("../../BubbleSprite").get_point_position(attach_point_index)
+
+func detach():
+	is_on_bubble = false
+	reparent(get_node("/root/main/Plastics"))
+	position.y += randf_range(-40, -20)
+	position.x += 10 * randfn(0.0, 1.0)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# touch bubble

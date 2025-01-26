@@ -29,13 +29,15 @@ position = Vector2(195, -325)
 [node name="NaCoin2" parent="." instance=ExtResource("5_fdfmh")]
 position = Vector2(-195, -471)
 
-[node name="Plastic" parent="." instance=ExtResource("6_62wwo")]
+[node name="Plastics" type="Node2D" parent="."]
+
+[node name="Plastic" parent="Plastics" instance=ExtResource("6_62wwo")]
 position = Vector2(-147, -305)
 
-[node name="Plastic2" parent="." instance=ExtResource("6_62wwo")]
+[node name="Plastic2" parent="Plastics" instance=ExtResource("6_62wwo")]
 position = Vector2(67, -247)
 
-[node name="Plastic3" parent="." instance=ExtResource("6_62wwo")]
+[node name="Plastic3" parent="Plastics" instance=ExtResource("6_62wwo")]
 position = Vector2(83, -603)
 
 [node name="Geyser" parent="." instance=ExtResource("7_qohgu")]

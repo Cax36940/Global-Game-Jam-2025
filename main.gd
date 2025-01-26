@@ -14,7 +14,6 @@ func _ready() -> void:
 func earn_h2o() -> void:
 	var dist = $Bubble.MAX_DEPTH - $Bubble.depth
 	var amount = dist / 10
-	print(amount)
 	$PlayerData.add_to_wallet(Currency.new(0, 0, 2*amount, 1*amount))
 
 

@@ -51,6 +51,8 @@ func reset(ui: Node):
 	stock_capacity = STOCK_INIT * stock_capacity_init_mult
 	air = AIR_INIT * air_init_mult
 	stock = stock_capacity
+	$BubbleSprite.reset()
+	position = Vector2(0, 0)
 
 
 func _ready() -> void:
@@ -90,6 +92,8 @@ func damage(value: float):
 
 func pop():
 	bubble_sprite.pop()
+	for child in $Plastics.get_children():
+		child.detach()
 	$PopSound.play()
 
 

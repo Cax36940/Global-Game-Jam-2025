@@ -168,3 +168,7 @@ func pop():
 	$ParticuleContainer.position = part_position / blob_points.size()
 	blob.visible = false
 	blob_outline.visible = false
+
+func reset():
+	blob.visible = true
+	blob_outline.visible = true
