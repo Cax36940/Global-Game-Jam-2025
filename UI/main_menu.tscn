@@ -525,7 +525,7 @@ grow_vertical = 2
 
 [node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
 layout_mode = 2
-text = "skill"
+text = "Na"
 horizontal_alignment = 1
 
 [node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
@@ -540,7 +540,7 @@ horizontal_alignment = 1
 
 [node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton/VBoxContainer"]
 layout_mode = 2
-text = "blabla"
+text = "1"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton"]
@@ -586,7 +586,7 @@ grow_vertical = 2
 
 [node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
 layout_mode = 2
-text = "skill"
+text = "Cl"
 horizontal_alignment = 1
 
 [node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
@@ -601,7 +601,7 @@ horizontal_alignment = 1
 
 [node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton2/VBoxContainer"]
 layout_mode = 2
-text = "blabla"
+text = "1"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton2"]
@@ -965,6 +965,8 @@ expand_icon = true
 [connection signal="pressed" from="LeftBar/LeftUpgrades/ResistanceUpgradeButton" to="." method="_on_resistance_upgrade_button_pressed"]
 [connection signal="pressed" from="LeftBar/LeftUpgrades/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_pressed"]
 [connection signal="pressed" from="LeftBar/LeftUpgrades/StockUpgradeButton" to="." method="_on_stock_upgrade_button_pressed"]
+[connection signal="pressed" from="RightUpgrades/SkillUpgradeButton" to="." method="_on_skill_upgrade_button_pressed"]
+[connection signal="pressed" from="RightUpgrades/SkillUpgradeButton2" to="." method="_on_skill_upgrade_button_2_pressed"]
 [connection signal="value_changed" from="Settings/VBoxContainer/SettingsBox/VolumeSetting/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
