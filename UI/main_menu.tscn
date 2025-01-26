@@ -108,21 +108,6 @@ events = [SubResource("InputEventKey_t3gal")]
 layer = 3
 script = ExtResource("1_vl84j")
 
-[node name="GameTitle" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -345.0
-offset_top = 59.0
-offset_right = 345.0
-offset_bottom = 142.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.462745, 0.882353, 0.937255, 1)
-theme_override_font_sizes/font_size = 60
-text = "¤"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StartButton" type="Button" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
@@ -816,6 +801,14 @@ Cax36940, Edjy, Skydrag et Temmie DaTem
 Musique d'ambiance générée par IA (AIVA.ai).
 SFX provenant de Pixabay."
 horizontal_alignment = 1
+
+[node name="GameTitle" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.882353, 0.937255, 1)
+theme_override_font_sizes/font_size = 150
+text = "¤"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = 5.0
