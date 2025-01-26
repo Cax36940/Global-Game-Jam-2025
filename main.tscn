@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=15 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
 [ext_resource type="PackedScene" uid="uid://cn0uxrgx4pdie" path="res://UI/main_menu.tscn" id="10_llnq5"]
 [ext_resource type="FontFile" uid="uid://bcq74n3ghthmp" path="res://7-segments-display.ttf" id="12_p54j2"]
+[ext_resource type="PackedScene" uid="uid://deurol71qh87b" path="res://collectibles/cl_coin.tscn" id="13_2g6df"]
+[ext_resource type="PackedScene" uid="uid://dbqeoh5b8xkc4" path="res://collectibles/nacl_coin.tscn" id="14_0y60a"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -79,3 +81,18 @@ theme_override_fonts/font = ExtResource("12_p54j2")
 theme_override_font_sizes/font_size = 60
 text = "10984"
 horizontal_alignment = 2
+
+[node name="ClCoin" parent="." instance=ExtResource("13_2g6df")]
+position = Vector2(-37, -409)
+
+[node name="ClCoin2" parent="." instance=ExtResource("13_2g6df")]
+position = Vector2(87, -404)
+
+[node name="ClCoin3" parent="." instance=ExtResource("13_2g6df")]
+position = Vector2(-49, -502)
+
+[node name="NaClCoin" parent="." instance=ExtResource("14_0y60a")]
+position = Vector2(-360, -457)
+
+[node name="NaClCoin2" parent="." instance=ExtResource("14_0y60a")]
+position = Vector2(-297, -347)

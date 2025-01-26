@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://q5yax87k1bjm"]
+
+[ext_resource type="Script" path="res://collectibles/salt_sprite.gd" id="1_aby65"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xtjxn"]
+
+[node name="SaltSprite" type="Node3D"]
+script = ExtResource("1_aby65")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xtjxn")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 3)
