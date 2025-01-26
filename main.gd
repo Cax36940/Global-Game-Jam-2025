@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 			$MainUI.start_game()
 			is_in_game = true
 			$Bubble.set_can_update(is_in_game)
-			
+			$CollectibleGenerator.start_generation()
 			
 	
 	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2

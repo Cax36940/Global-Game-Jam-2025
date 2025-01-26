@@ -1,19 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=13 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
 [ext_resource type="PackedScene" uid="uid://gbcb6vfrmeku" path="res://bubble/bubble.tscn" id="2_fqsu4"]
 [ext_resource type="PackedScene" uid="uid://b8aamx2rsae2k" path="res://assets/rock_background.tscn" id="3_poyp4"]
-[ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://collectibles/na_coin.tscn" id="5_fdfmh"]
 [ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://collectibles/plastic.tscn" id="6_62wwo"]
 [ext_resource type="AudioStream" uid="uid://dvjr8gxfsjnhi" path="res://sfx/underwater-ambience.wav" id="7_k04dv"]
 [ext_resource type="PackedScene" uid="uid://ciu31gt3qvncu" path="res://collectibles/geyser.tscn" id="7_qohgu"]
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="8_x20an"]
 [ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
 [ext_resource type="PackedScene" uid="uid://cn0uxrgx4pdie" path="res://UI/main_menu.tscn" id="10_llnq5"]
+[ext_resource type="PackedScene" uid="uid://dlflnk77rhqpf" path="res://collectibles/collectible_generator.tscn" id="12_10vb1"]
 [ext_resource type="FontFile" uid="uid://bcq74n3ghthmp" path="res://7-segments-display.ttf" id="12_p54j2"]
-[ext_resource type="PackedScene" uid="uid://deurol71qh87b" path="res://collectibles/cl_coin.tscn" id="13_2g6df"]
-[ext_resource type="PackedScene" uid="uid://dbqeoh5b8xkc4" path="res://collectibles/nacl_coin.tscn" id="14_0y60a"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_15lqo")
@@ -25,12 +23,6 @@ script = ExtResource("2_28mpt")
 
 [node name="RockBackground" parent="." instance=ExtResource("3_poyp4")]
 position = Vector2(-960, -540)
-
-[node name="NaCoin" parent="." instance=ExtResource("5_fdfmh")]
-position = Vector2(195, -325)
-
-[node name="NaCoin2" parent="." instance=ExtResource("5_fdfmh")]
-position = Vector2(-195, -471)
 
 [node name="Plastic" parent="." instance=ExtResource("6_62wwo")]
 position = Vector2(-147, -305)
@@ -82,17 +74,4 @@ theme_override_font_sizes/font_size = 60
 text = "10984"
 horizontal_alignment = 2
 
-[node name="ClCoin" parent="." instance=ExtResource("13_2g6df")]
-position = Vector2(-37, -409)
-
-[node name="ClCoin2" parent="." instance=ExtResource("13_2g6df")]
-position = Vector2(87, -404)
-
-[node name="ClCoin3" parent="." instance=ExtResource("13_2g6df")]
-position = Vector2(-49, -502)
-
-[node name="NaClCoin" parent="." instance=ExtResource("14_0y60a")]
-position = Vector2(-360, -457)
-
-[node name="NaClCoin2" parent="." instance=ExtResource("14_0y60a")]
-position = Vector2(-297, -347)
+[node name="CollectibleGenerator" parent="." instance=ExtResource("12_10vb1")]
