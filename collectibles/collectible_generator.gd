@@ -69,16 +69,16 @@ func generate_collectible() -> void :
 
 func clear_coins() -> void :
 	for child in $NaCoins.get_children():
-		if child.position.y > get_node("../Bubble").position.y + get_node("../Bubble").velocity.y * 10:
+		if child.position.y > get_node("../Bubble").position.y - get_node("../Bubble").velocity.y * 10:
 			$NaCoins.call_deferred("remove_child", child)
 			child.call_deferred("queue_free")
 	
 	for child in $ClCoins.get_children():
-		if child.position.y > get_node("../Bubble").position.y + get_node("../Bubble").velocity.y * 10:
+		if child.position.y > get_node("../Bubble").position.y - get_node("../Bubble").velocity.y * 10:
 			$ClCoins.call_deferred("remove_child", child)
 			child.call_deferred("queue_free")
 	
 	for child in $NaClCoins.get_children():
-		if child.position.y > get_node("../Bubble").position.y + get_node("../Bubble").velocity.y * 10:
+		if child.position.y > get_node("../Bubble").position.y - get_node("../Bubble").velocity.y * 10:
 			$NaClCoins.call_deferred("remove_child", child)
 			child.call_deferred("queue_free")
