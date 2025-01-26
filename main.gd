@@ -1,24 +1,27 @@
 extends Node2D
 
 
-var handpan = preload("res://sfx/hang.ogg")
-var ambient = preload("res://sfx/underwater-ambience.wav")
 
 var is_in_game = false
-
-var MAX_DEPTH = 10984
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/Label.text = str(MAX_DEPTH)
 	$Bubble.set_can_update(is_in_game)
 	$Bubble.bubble_died.connect(on_end_game)
+
+
+func earn_h2o() -> void:
+	var dist = $Bubble.MAX_DEPTH - $Bubble.depth
+	var amount = dist / 10
+	print(amount)
+	$PlayerData.add_to_wallet(Currency.new(0, 0, 2*amount, 1*amount))
 
 
 func on_end_game() -> void:
 	$MainUI.show_main_ui()
 	is_in_game = false
+	earn_h2o()
 	$Bubble.set_can_update(is_in_game)
 
 

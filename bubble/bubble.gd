@@ -14,12 +14,15 @@ const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
 const SLIDE_RATE_INPUT = 2.0
 const ZOOM_PER_SEC = 0.1
 
+const MAX_DEPTH = 10984 # m
+
 var hspeed = 300.0
 var vspeed = 100.0
 var air = 0.1 # TODO replace with initial air value
 var stock_capacity = 0.1 # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
 var stock = 0.1 # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
+var depth = MAX_DEPTH
 
 signal bubble_died
 
@@ -58,7 +61,7 @@ func lose_air_check_die(delta: float):
 	return air < AIR_MIN
 
 func _process(delta: float) -> void:
-	var depth = 10984 + int(position.y/50)
+	depth = 10984 + int(position.y/50)
 	$"../CanvasLayer/Label".text = str(depth)
 	var die = lose_air_check_die(delta)
 	if die:

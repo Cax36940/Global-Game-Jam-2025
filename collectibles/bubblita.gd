@@ -37,8 +37,9 @@ func pop():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# touch bubble
-	body.air += air
-	pop()
+	if body.get_parent().is_in_game:
+		body.air += air
+		pop()
 
 
 func _on_audio_stream_player_2d_finished() -> void:
