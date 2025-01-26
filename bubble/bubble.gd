@@ -33,10 +33,11 @@ func reset():
 
 func _ready() -> void:
 	bubble_died.connect(reset)
+	adjust_size(0)
 
 
 func adjust_size(delta: float):
-	scale = Vector2(10*air, 10*air)
+	scale = Vector2(5*air, 5*air)
 	var z = $Camera2D.zoom.x
 	z = move_toward(z, 1/mult, ZOOM_PER_SEC * delta)
 	$Camera2D.zoom = Vector2(z, z)
@@ -96,8 +97,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, hspeed * SLIDE_RATE * delta)
 	
-	mult = sqrt(10*air)
-	velocity.y = - vspeed * mult
+	mult = sqrt(5*air)
+	velocity.y = - vspeed * mult * 2
 	
 	adjust_size(delta)
 	move_and_slide()
