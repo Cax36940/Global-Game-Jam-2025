@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 		line.points = points
 		
 	else:
+		global_scale = get_parent().global_scale
 		var position_index = []
 		for i in range(-2, 3, 1):
 			position_index.push_back((attach_point_index + i) % 30)
@@ -43,7 +44,7 @@ func _process(delta: float) -> void:
 func detach():
 	is_on_bubble = false
 	scale = global_scale
-	reparent(get_node("/root/main/Plastics"))
+	queue_free()
 	position.y += randf_range(-50, -30)
 	position.x += 20 * randfn(0.0, 2.0)
 
