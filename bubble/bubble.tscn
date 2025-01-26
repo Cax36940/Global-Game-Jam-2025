@@ -32,3 +32,13 @@ parameters/looping = true
 
 [node name="PopSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ovr7c")
+
+[node name="ShockParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.83
+lifetime_randomness = 0.59
+direction = Vector2(0, -1)
+gravity = Vector2(0, 10)

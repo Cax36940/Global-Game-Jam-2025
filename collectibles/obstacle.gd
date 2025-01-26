@@ -28,6 +28,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body.has_node("BubbleSprite"):
 		attach_point_index = body.get_node("BubbleSprite").nearest_index(position)
+		body.emit_particles(attach_point_index)
+	
 	
 	var index_list = []
 	for i in range(-2, 3, 1):

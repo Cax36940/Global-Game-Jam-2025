@@ -96,6 +96,13 @@ func damage(value: float):
 		refill(AIR_MIN - air)
 
 
+func emit_particles(i: int):
+	$ShockParticles.position = $BubbleSprite.get_point_position(i)
+	$ShockParticles.initial_velocity_min = abs(velocity.y)+120
+	$ShockParticles.initial_velocity_max = abs(velocity.y)+180
+	$ShockParticles.emitting = true
+
+
 func get_air_inflation() -> float:
 	return AIR_MIN + (inflation ** 2) * (AIR_INIT * air_init_mult - AIR_MIN)
 
