@@ -16,7 +16,7 @@ func _ready() -> void:
 		var color : Color = Color.from_hsv(0.6, 0.5, 0.6 - 0.05 * i)
 		instance.set_color(color)
 		instance.z_index = -2*i
-		add_child(instance)
+		$Rocks.add_child(instance)
 		
 	generate_worm()
 	pass # Replace with function body.
@@ -29,14 +29,22 @@ func _process(_delta: float) -> void:
 
 func generate_worm():
 	await get_tree().create_timer(.1).timeout
+	if($Worms.get_child_count() > 100):
+		await get_tree().create_timer(1.).timeout
+		generate_worm()
+		return
+		
 	var instance = worm_scene.instantiate()
 	instance.position.x = randf_range(-100, 600)
 	instance.position.y = randf_range(-1000, 0)
 	instance.z_index = randi_range(-2, -24)
 	instance.set_velocity_factor(first_layer_depth / (first_layer_depth + (-instance.z_index/2) * layer_spacing))
-	add_child(instance)
+	$Worms.add_child(instance)
 	generate_worm()
 
 func set_velocity(new_velocity : Vector2):
-	for child in get_children():
+	for child in $Worms.get_children():
+		child.set_velocity(new_velocity)
+		
+	for child in $Rocks.get_children():
 		child.set_velocity(new_velocity)

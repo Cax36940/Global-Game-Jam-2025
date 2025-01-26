@@ -5,3 +5,7 @@
 [node name="RockBackground" type="Node2D"]
 z_as_relative = false
 script = ExtResource("1_hcsqu")
+
+[node name="Worms" type="Node2D" parent="."]
+
+[node name="Rocks" type="Node2D" parent="."]
