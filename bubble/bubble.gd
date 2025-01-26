@@ -64,7 +64,7 @@ func reset(ui: Node):
 func _ready() -> void:
 	$Ambient.play()
 	$Music.play()
-	bubble_died.connect(reset)
+	bubble_died.connect(reset.bind($"../MainUI"))
 	adjust_size(0)
 
 
