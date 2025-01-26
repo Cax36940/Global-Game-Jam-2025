@@ -20,6 +20,19 @@ func _process(_delta: float) -> void:
 func start_generation():
 	generate_collectible()
 
+func reset():
+	for node in $NaCoins.get_children():
+		$NaCoins.remove_child(node)
+		node.queue_free() 
+		
+	for node in $ClCoins.get_children():
+		$ClCoins.remove_child(node)
+		node.queue_free() 
+		
+	for node in $NaClCoins.get_children():
+		$NaClCoins.remove_child(node)
+		node.queue_free() 
+
 func generate_collectible() -> void :
 	await get_tree().create_timer(5.).timeout
 	clear_coins()
