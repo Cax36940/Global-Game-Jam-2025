@@ -392,6 +392,10 @@ text = "Distance max atteinte : -11000"
 layout_mode = 2
 text = "Distance run précédente : -11000"
 
+[node name="StatTotDst" type="Label" parent="LeftBar/Stats"]
+layout_mode = 2
+text = "Distance  totale parcourue : 0"
+
 [node name="RightUpgrades" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(128, 128)
 anchors_preset = 3
