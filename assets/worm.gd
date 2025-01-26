@@ -20,6 +20,7 @@ func _ready() -> void:
 	default_color = Color.from_hsv(hue, sat, val)
 	
 	total_time = randf_range(0.0, 2 * PI / SPEED)
+	scale = Vector2(10./(10. - z_index),10./(10. - z_index))
 	pass # Replace with function body.
 
 
