@@ -54,7 +54,7 @@ func reset(ui: Node):
 	air = AIR_INIT * air_init_mult
 	stock = stock_capacity
 	$BubbleSprite.reset()
-	position = Vector2(0, 0)
+	position = Vector2.ZERO
 	$Camera2D.zoom = Vector2.ONE
 
 
