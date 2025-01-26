@@ -25,7 +25,7 @@ func _ready() -> void:
 func set_upgrade_txt(cost: Currency, lvl: int, value: float):
 	$VBoxContainer/Cost.text = "Prix : " + Currency.parse_from_costs(cost)
 	$VBoxContainer/Level.text = "Niveau " + str(lvl)
-	$VBoxContainer/Value.text = "Valeur " + str(value)
+	$VBoxContainer/Value.text = "Valeur %.2f" % [value]
 
 
 var _is_animating = false

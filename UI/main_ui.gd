@@ -22,10 +22,10 @@ var speed = {
 
 var resistance = {
 	base_cost = Currency.multiply(Currency.costs["NaCl"], 5),
-	base_value = 1.0,
+	base_value = 0.0,
 	lvl = 0,
 	cost = Currency.new(1, 1, 0, 0),
-	value = 1.0
+	value = 0.0
 }
 
 var stock = {
@@ -166,7 +166,7 @@ func _on_resistance_upgrade_button_pressed() -> void:
 	
 	upgrade_stat(resistance, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
-		func (base, lvl): return base * (lvl / 2.0 + 1.0)
+		func (base, lvl): return 1.0 / (1.0 + exp(2.0 - lvl/2.0)) * 0.8
 	)
 	$LeftBar/LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 
