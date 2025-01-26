@@ -1,6 +1,7 @@
 class_name MainUI
 extends CanvasLayer
 
+@export var max_db_volume: float = 10
 
 var health = {
 	base_cost = Currency.multiply(Currency.costs["H2"], 10),
@@ -141,11 +142,16 @@ func _on_resistance_upgrade_button_pressed() -> void:
 
 func _on_stock_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(stock.cost):
-		$LeftUpgrades/SpeedUpgradeButton.buy_fail_animation()
+		$LeftUpgrades/StockUpgradeButton.buy_fail_animation()
 		return
 	
 	upgrade_stat(stock, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
+	$LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value*max_db_volume/100.0)
+	

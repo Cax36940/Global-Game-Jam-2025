@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=12 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b8aamx2rsae2k" path="res://assets/rock_background.tscn" id="3_poyp4"]
 [ext_resource type="PackedScene" uid="uid://qwp518eg201m" path="res://collectibles/na_coin.tscn" id="5_fdfmh"]
 [ext_resource type="PackedScene" uid="uid://dy1imo35nawa4" path="res://collectibles/plastic.tscn" id="6_62wwo"]
-[ext_resource type="Script" path="res://collectibles/na_coin.gd" id="6_xvo0c"]
 [ext_resource type="PackedScene" uid="uid://ciu31gt3qvncu" path="res://collectibles/geyser.tscn" id="7_qohgu"]
 [ext_resource type="Texture2D" uid="uid://dnjexrb0tb0cg" path="res://assets/chemney.png" id="9_eh8x3"]
 [ext_resource type="PackedScene" uid="uid://cn0uxrgx4pdie" path="res://UI/main_menu.tscn" id="10_llnq5"]
@@ -26,11 +25,9 @@ position = Vector2(-960, -540)
 
 [node name="NaCoin" parent="." instance=ExtResource("5_fdfmh")]
 position = Vector2(195, -325)
-script = ExtResource("6_xvo0c")
 
 [node name="NaCoin2" parent="." instance=ExtResource("5_fdfmh")]
 position = Vector2(-195, -471)
-script = ExtResource("6_xvo0c")
 
 [node name="Plastic" parent="." instance=ExtResource("6_62wwo")]
 position = Vector2(-147, -305)

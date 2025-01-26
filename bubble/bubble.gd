@@ -44,7 +44,7 @@ func set_can_update(value: bool):
 func reset(ui: Node):
 	# reset values for next run (link to ui)
 	stock_capacity_init_mult = ui.get_stock()
-	air_init_mult            = ui.get_air()
+	air_init_mult            = ui.get_health()
 	vspeed_mult              = ui.get_speed()
 	resistance               = ui.get_resistance()
 	
