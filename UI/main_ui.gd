@@ -158,7 +158,6 @@ func _on_stock_upgrade_button_pressed() -> void:
 
 
 func _on_h_slider_value_changed(value: float) -> void:
-	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), value == 0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value/100.0 * (max_db_volume-min_db_volume) + min_db_volume)
 
@@ -188,6 +187,7 @@ func _hide_settings_callback() -> void:
 	in_settings = false
 
 
-func update_stats(max_distance: int, previous_distance: int) -> void:
-	$LeftBar/Stats/StatDstMax.text = "Distance max atteinte : " + str(max_distance)
-	$LeftBar/Stats/StatDstPrev.text = "Distance run précédente : " + str(previous_distance)
+func update_stats(max_distance: int, previous_distance: int, total_distance_traveled: int) -> void:
+	$LeftBar/Stats/StatDstMax.text = "Distance max atteinte : -" + str(max_distance)
+	$LeftBar/Stats/StatDstPrev.text = "Distance run précédente : -" + str(previous_distance)
+	$LeftBar/Stats/StatTotDst.text = "Distance totale parcourue : " + str(total_distance_traveled)
