@@ -122,9 +122,13 @@ func pop():
 	$PopSound.play()
 
 
-func _process(delta: float) -> void:
-	depth = 10984 + int(position.y/50)
+func update_depth():
+	depth = MAX_DEPTH + int(position.y/50)
 	$"../CanvasLayer/Label".text = str(-depth)
+
+
+func _process(delta: float) -> void:
+	update_depth()
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed_mult = 0

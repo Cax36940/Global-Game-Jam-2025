@@ -22,6 +22,7 @@ func on_end_game() -> void:
 	is_in_game = false
 	earn_h2o()
 	$Bubble.reset($MainUI)
+	$Bubble.update_depth()
 	$Bubble.set_can_update(is_in_game)
 
 
