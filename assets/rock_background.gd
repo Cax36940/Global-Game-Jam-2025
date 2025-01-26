@@ -6,18 +6,7 @@ var first_layer_depth : float = 1000
 var layer_spacing : float = 500
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var viewport_half_width = get_viewport_rect().size.x / 2.0
-	for i in range(12, 0, -1):
-		var depth_coef : float = first_layer_depth / (first_layer_depth + (i-1) * layer_spacing)
-		var instance = rock_layer.instantiate()
-		var width = viewport_half_width - depth_coef * (viewport_half_width - 100)
-		instance.set_width(width + 150)
-		instance.set_velocity_factor(depth_coef)
-		var color : Color = Color.from_hsv(0.6, 0.5, 0.6 - 0.05 * i)
-		instance.set_color(color)
-		instance.z_index = -2*i
-		$Rocks.add_child(instance)
-		
+	reset()
 	generate_worm()
 	pass # Replace with function body.
 
@@ -50,5 +39,19 @@ func set_velocity(new_velocity : Vector2):
 		child.set_velocity(new_velocity)
 
 func reset():
-	for node in $Rocks.get_children() :
-		node.reset()
+	position = Vector2(-960, -540)
+	for child in $Rocks.get_children():
+		$Rocks.remove_child(child)
+		child.queue_free()
+		
+	var viewport_half_width = get_viewport_rect().size.x / 2.0
+	for i in range(12, 0, -1):
+		var depth_coef : float = first_layer_depth / (first_layer_depth + (i-1) * layer_spacing)
+		var instance = rock_layer.instantiate()
+		var width = viewport_half_width - depth_coef * (viewport_half_width - 100)
+		instance.set_width(width + 150)
+		instance.set_velocity_factor(depth_coef)
+		var color : Color = Color.from_hsv(0.6, 0.5, 0.6 - 0.05 * i)
+		instance.set_color(color)
+		instance.z_index = -2*i
+		$Rocks.add_child(instance)

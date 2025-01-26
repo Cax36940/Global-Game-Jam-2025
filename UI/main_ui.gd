@@ -5,7 +5,7 @@ extends CanvasLayer
 @export var max_db_volume: float = 10
 
 var health = {
-	base_cost = Currency.multiply(Currency.costs["H2"], 10),
+	base_cost = Currency.multiply(Currency.costs["H2"], 0),
 	base_value = 1.0,
 	lvl = 0,
 	cost = Currency.new(0, 0, 10, 0),

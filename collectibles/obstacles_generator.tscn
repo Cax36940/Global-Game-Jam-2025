@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc4latf4g8k0a"]
+
+[ext_resource type="Script" path="res://collectibles/obstacles_generator.gd" id="1_nvut5"]
+
+[node name="ObstaclesGenerator" type="Node2D"]
+script = ExtResource("1_nvut5")
