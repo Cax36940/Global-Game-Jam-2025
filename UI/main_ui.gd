@@ -5,7 +5,7 @@ extends CanvasLayer
 @export var max_db_volume: float = 10
 
 var health = {
-	base_cost = Currency.multiply(Currency.costs["H2"], 0),
+	base_cost = Currency.multiply(Currency.costs["H2"], 10),
 	base_value = 1.0,
 	lvl = 0,
 	cost = Currency.new(0, 0, 10, 0),
@@ -121,7 +121,7 @@ func _on_health_upgrade_button_pressed() -> void:
 		return
 	
 	upgrade_stat(health,
-		func (base, lvl): return Currency.multiply(base, lvl + 1),
+		func (base, lvl): return Currency.multiply(base, lvl**1.15 + 1),
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
 	$LeftBar/LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
@@ -134,7 +134,7 @@ func _on_speed_upgrade_button_pressed() -> void:
 	
 	upgrade_stat(speed, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
-		func (base, lvl): return base * (lvl / 2.0 + 1.0)
+		func (base, lvl): return base * (lvl + 1.0)
 	)
 	$LeftBar/LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
 
