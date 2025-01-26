@@ -52,5 +52,5 @@ func _process(delta: float) -> void:
 		$Bubble.reset_values($MainUI)
 			
 	$CanvasLayer/StockIndicator.quantity = $Bubble.stock / $Bubble.stock_capacity
-	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2
+	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y
 	$RockBackground.position.x = $Bubble.position.x - get_viewport_rect().size.x / 2

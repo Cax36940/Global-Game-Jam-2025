@@ -39,7 +39,7 @@ func set_velocity(new_velocity : Vector2):
 		child.set_velocity(new_velocity)
 
 func reset():
-	position = Vector2(-960, -540)
+	position = Vector2(-960, -1080)
 	for child in $Rocks.get_children():
 		$Rocks.remove_child(child)
 		child.queue_free()
