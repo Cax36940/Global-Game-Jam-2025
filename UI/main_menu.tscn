@@ -108,21 +108,6 @@ events = [SubResource("InputEventKey_t3gal")]
 layer = 3
 script = ExtResource("1_vl84j")
 
-[node name="GameTitle" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -345.0
-offset_top = 59.0
-offset_right = 345.0
-offset_bottom = 142.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.462745, 0.882353, 0.937255, 1)
-theme_override_font_sizes/font_size = 60
-text = "¤"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StartButton" type="Button" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
@@ -478,7 +463,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -310.0
-offset_top = -310.0
+offset_top = -158.0
 offset_right = -30.0
 offset_bottom = -30.0
 grow_horizontal = 0
@@ -605,130 +590,6 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton2"]
-libraries = {
-"": SubResource("AnimationLibrary_4esr2")
-}
-
-[node name="SkillUpgradeButton3" type="Button" parent="RightUpgrades"]
-layout_direction = 3
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
-flat = true
-expand_icon = true
-script = ExtResource("3_frgtn")
-button_up_icon = ExtResource("7_bqgti")
-button_down_icon = ExtResource("8_5ednf")
-default_color = Color(0.413972, 0.424788, 0.441254, 1)
-mouse_over_color = Color(0.241643, 0.249188, 0.260675, 1)
-buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
-
-[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton3"]
-modulate = Color(0.413972, 0.424788, 0.441254, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_bqgti")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
-layout_mode = 2
-text = "skill"
-horizontal_alignment = 1
-
-[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
-layout_mode = 2
-text = "Niveau 0"
-horizontal_alignment = 1
-
-[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
-layout_mode = 2
-text = "Prix : 999 NaCl"
-horizontal_alignment = 1
-
-[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton3/VBoxContainer"]
-layout_mode = 2
-text = "blabla"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton3"]
-libraries = {
-"": SubResource("AnimationLibrary_4esr2")
-}
-
-[node name="SkillUpgradeButton4" type="Button" parent="RightUpgrades"]
-layout_direction = 3
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w23ky")
-flat = true
-expand_icon = true
-script = ExtResource("3_frgtn")
-button_up_icon = ExtResource("7_bqgti")
-button_down_icon = ExtResource("8_5ednf")
-default_color = Color(2.45467e-06, 0.412855, 0.510963, 1)
-mouse_over_color = Color(6.73831e-07, 0.20348, 0.257682, 1)
-buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
-
-[node name="gfx" type="TextureRect" parent="RightUpgrades/SkillUpgradeButton4"]
-modulate = Color(2.45467e-06, 0.412855, 0.510963, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_bqgti")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightUpgrades/SkillUpgradeButton4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Name" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
-layout_mode = 2
-text = "skill"
-horizontal_alignment = 1
-
-[node name="Level" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
-layout_mode = 2
-text = "Niveau 0"
-horizontal_alignment = 1
-
-[node name="Cost" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
-layout_mode = 2
-text = "Prix : 999 NaCl"
-horizontal_alignment = 1
-
-[node name="Value" type="Label" parent="RightUpgrades/SkillUpgradeButton4/VBoxContainer"]
-layout_mode = 2
-text = "blabla"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RightUpgrades/SkillUpgradeButton4"]
 libraries = {
 "": SubResource("AnimationLibrary_4esr2")
 }
@@ -940,6 +801,14 @@ Cax36940, Edjy, Skydrag et Temmie DaTem
 Musique d'ambiance générée par IA (AIVA.ai).
 SFX provenant de Pixabay."
 horizontal_alignment = 1
+
+[node name="GameTitle" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.882353, 0.937255, 1)
+theme_override_font_sizes/font_size = 150
+text = "¤"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = 5.0

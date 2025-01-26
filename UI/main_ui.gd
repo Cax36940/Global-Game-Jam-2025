@@ -22,10 +22,10 @@ var speed = {
 
 var resistance = {
 	base_cost = Currency.multiply(Currency.costs["NaCl"], 5),
-	base_value = 1.0,
+	base_value = 0.0,
 	lvl = 0,
 	cost = Currency.new(1, 1, 0, 0),
-	value = 1.0
+	value = 0.0
 }
 
 var stock = {
@@ -94,7 +94,6 @@ func _ready() -> void:
 	
 	ui_positions.append($LeftBar.position)
 	ui_positions.append($RightUpgrades.position)
-	ui_positions.append($GameTitle.position)
 	ui_positions.append($Settings.position)
 	ui_positions.append($StartButton.position)
 	
@@ -108,26 +107,21 @@ func start_game() -> void:
 	tween = get_tree().create_tween()
 	tween.tween_property($RightUpgrades, "position", Vector2(ui_positions[1].x + $RightUpgrades.size.x + 2*ui_positions[0].x, ui_positions[1].y), 1)
 	tween = get_tree().create_tween()
-	tween.tween_property($GameTitle, "position", Vector2(ui_positions[2].x, -$GameTitle.size.y - ui_positions[2].y), 1)
-	tween = get_tree().create_tween()
-	tween.tween_property($StartButton, "position", Vector2(ui_positions[4].x, ui_positions[4].y + $StartButton.size.y + (get_viewport().get_visible_rect().size.y - ui_positions[4].y)), 1)
+	tween.tween_property($StartButton, "position", Vector2(ui_positions[3].x, ui_positions[3].y + $StartButton.size.y + (get_viewport().get_visible_rect().size.y - ui_positions[3].y)), 1)
 
 func hide_main_ui_callback() -> void:
 	$LeftBar.visible = false
 	$RightUpgrades.visible = false
-	$GameTitle.visible = false
 	$StartButton.visible = false
 
 
 func show_main_ui() -> void:
 	$LeftBar.visible = true
 	$RightUpgrades.visible = true
-	$GameTitle.visible = true
 	$StartButton.visible = true
 	$LeftBar.position = ui_positions[0]
 	$RightUpgrades.position = ui_positions[1]
-	$GameTitle.position = ui_positions[2]
-	$StartButton.position = ui_positions[4]
+	$StartButton.position = ui_positions[3]
 
 
 
@@ -166,7 +160,7 @@ func _on_resistance_upgrade_button_pressed() -> void:
 	
 	upgrade_stat(resistance, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
-		func (base, lvl): return base * (lvl / 2.0 + 1.0)
+		func (base, lvl): return 1.0 / (1.0 + exp(2.0 - lvl/2.0)) * 0.8
 	)
 	$LeftBar/LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 
@@ -199,12 +193,12 @@ func show_settings() -> void:
 	$Settings.visible = true
 	in_settings = true
 	var tween = get_tree().create_tween()
-	tween.tween_property($Settings, "position", Vector2(ui_positions[3].x, -ui_positions[3].y-$Settings.size.y), .5).set_trans(Tween.TRANS_SPRING)
+	tween.tween_property($Settings, "position", Vector2(ui_positions[2].x, -ui_positions[2].y-$Settings.size.y), .5).set_trans(Tween.TRANS_SPRING)
 
 
 func hide_settings() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property($Settings, "position", Vector2(ui_positions[3].x, ui_positions[3].y), .5).set_trans(Tween.TRANS_SPRING)
+	tween.tween_property($Settings, "position", Vector2(ui_positions[2].x, ui_positions[2].y), .5).set_trans(Tween.TRANS_SPRING)
 	tween.tween_callback(_hide_settings_callback)
 
 
