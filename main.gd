@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 			$Bubble.start()
 			is_in_game = true
 			$Bubble.set_can_update(is_in_game)
-			#$CollectibleGenerator.start_generation()
+			$CollectibleGenerator.start_generation()
 			
 	$CanvasLayer/StockIndicator.quantity = $Bubble.stock / $Bubble.stock_capacity
 	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2
