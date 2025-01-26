@@ -12,6 +12,7 @@ func _ready() -> void:
 	$Bubble.bubble_died.connect(on_end_game)
 	max_depth_reached = $Bubble.MAX_DEPTH
 	$MainUI.update_stats(max_depth_reached, max_depth_reached, total_distance_traveled)
+	$MainUI.start_button_pressed.connect(on_start_game)
 
 func earn_h2o() -> void:
 	var dist = $Bubble.MAX_DEPTH - $Bubble.depth
@@ -32,17 +33,18 @@ func on_end_game() -> void:
 	$Bubble.set_can_update(is_in_game)
 	$CollectibleGenerator.reset()
 
+func on_start_game() -> void:
+	$MainUI.start_game()
+	$Bubble.start()
+	is_in_game = true
+	$Bubble.set_can_update(is_in_game)
+	$CollectibleGenerator.start_generation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !is_in_game:
 		$Bubble.inflate(delta)
-		if Input.is_action_just_pressed("ui_copy"):
-			$MainUI.start_game()
-			$Bubble.start()
-			is_in_game = true
-			$Bubble.set_can_update(is_in_game)
-			$CollectibleGenerator.start_generation()
+			
 			
 	$CanvasLayer/StockIndicator.quantity = $Bubble.stock / $Bubble.stock_capacity
 	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2

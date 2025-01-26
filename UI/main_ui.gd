@@ -76,6 +76,7 @@ func _ready() -> void:
 	ui_positions.append($RightUpgrades.position)
 	ui_positions.append($GameTitle.position)
 	ui_positions.append($Settings.position)
+	ui_positions.append($StartButton.position)
 	
 	$Settings.visible = false
 
@@ -88,20 +89,25 @@ func start_game() -> void:
 	tween.tween_property($RightUpgrades, "position", Vector2(ui_positions[1].x + $RightUpgrades.size.x + 2*ui_positions[0].x, ui_positions[1].y), 1)
 	tween = get_tree().create_tween()
 	tween.tween_property($GameTitle, "position", Vector2(ui_positions[2].x, -$GameTitle.size.y - ui_positions[2].y), 1)
+	tween = get_tree().create_tween()
+	tween.tween_property($StartButton, "position", Vector2(ui_positions[4].x, ui_positions[4].y + $StartButton.size.y + (get_viewport().get_visible_rect().size.y - ui_positions[4].y)), 1)
 
 func hide_main_ui_callback() -> void:
 	$LeftBar.visible = false
 	$RightUpgrades.visible = false
 	$GameTitle.visible = false
+	$StartButton.visible = false
 
 
 func show_main_ui() -> void:
 	$LeftBar.visible = true
 	$RightUpgrades.visible = true
 	$GameTitle.visible = true
+	$StartButton.visible = true
 	$LeftBar.position = ui_positions[0]
 	$RightUpgrades.position = ui_positions[1]
 	$GameTitle.position = ui_positions[2]
+	$StartButton.position = ui_positions[4]
 
 
 
@@ -191,3 +197,7 @@ func update_stats(max_distance: int, previous_distance: int, total_distance_trav
 	$LeftBar/Stats/StatDstMax.text = "Distance max atteinte : -" + str(max_distance)
 	$LeftBar/Stats/StatDstPrev.text = "Distance run précédente : -" + str(previous_distance)
 	$LeftBar/Stats/StatTotDst.text = "Distance totale parcourue : " + str(total_distance_traveled)
+
+signal start_button_pressed
+func _on_start_button_pressed() -> void:
+	start_button_pressed.emit()
