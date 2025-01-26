@@ -1,6 +1,7 @@
 class_name MainUI
 extends CanvasLayer
 
+@export var min_db_volume: float = -10
 @export var max_db_volume: float = 10
 
 var health = {
@@ -47,6 +48,7 @@ func upgrade_stat(stat: Dictionary, cost_func: Callable, value_func: Callable):
 	stat.value = value_func.call(stat.base_value, stat.lvl)
 
 var ui_positions = []
+var in_settings = false
 
 func _ready() -> void:
 	# if implementing saves, load upgrade values
@@ -73,6 +75,9 @@ func _ready() -> void:
 	ui_positions.append($LeftUpgrades.position)
 	ui_positions.append($RightUpgrades.position)
 	ui_positions.append($GameTitle.position)
+	ui_positions.append($Settings.position)
+	
+	$Settings.visible = false
 
 
 func start_game() -> void:
@@ -153,5 +158,31 @@ func _on_stock_upgrade_button_pressed() -> void:
 
 
 func _on_h_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value*max_db_volume/100.0)
-	
+	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), value == 0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value/100.0 * (max_db_volume-min_db_volume) + min_db_volume)
+
+
+func _on_settings_button_pressed() -> void:
+	if in_settings:
+		hide_settings()
+	else:
+		show_settings()
+
+
+func show_settings() -> void:
+	$Settings.visible = true
+	in_settings = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($Settings, "position", Vector2(ui_positions[3].x, -ui_positions[3].y-$Settings.size.y), .5).set_trans(Tween.TRANS_SPRING)
+
+
+func hide_settings() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property($Settings, "position", Vector2(ui_positions[3].x, ui_positions[3].y), .5).set_trans(Tween.TRANS_SPRING)
+	tween.tween_callback(_hide_settings_callback)
+
+
+func _hide_settings_callback() -> void:
+	$Settings.visible = false
+	in_settings = false
