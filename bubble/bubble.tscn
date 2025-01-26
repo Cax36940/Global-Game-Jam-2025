@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://gbcb6vfrmeku"]
 
 [ext_resource type="Script" path="res://bubble/bubble.gd" id="1_jhrmi"]
-[ext_resource type="PackedScene" path="res://bubble/bubble_sprite.tscn" id="3_k1ojm"]
+[ext_resource type="PackedScene" uid="uid://idkbtuevxpcd" path="res://bubble/bubble_sprite.tscn" id="3_k1ojm"]
 [ext_resource type="AudioStream" uid="uid://bac7ouc1vnx6y" path="res://sfx/big-bubble.mp3" id="3_ovr7c"]
 [ext_resource type="AudioStream" uid="uid://dvjr8gxfsjnhi" path="res://sfx/underwater-ambience.wav" id="4_v2b43"]
 [ext_resource type="AudioStream" uid="uid://dpx5g2qgjatvg" path="res://sfx/musique.mp3" id="5_61vos"]

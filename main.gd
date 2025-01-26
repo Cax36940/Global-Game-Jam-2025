@@ -14,7 +14,6 @@ func _ready() -> void:
 func earn_h2o() -> void:
 	var dist = $Bubble.MAX_DEPTH - $Bubble.depth
 	var amount = dist / 10
-	print(amount)
 	$PlayerData.add_to_wallet(Currency.new(0, 0, 2*amount, 1*amount))
 
 
@@ -22,16 +21,18 @@ func on_end_game() -> void:
 	$MainUI.show_main_ui()
 	is_in_game = false
 	earn_h2o()
+	$Bubble.reset($MainUI)
 	$Bubble.set_can_update(is_in_game)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if !is_in_game:
+		$Bubble.inflate(delta)
 		if Input.is_action_just_pressed("ui_copy"):
 			$MainUI.start_game()
+			$Bubble.start()
 			is_in_game = true
-			$Bubble.reset($MainUI)
 			$Bubble.set_can_update(is_in_game)
 			#$CollectibleGenerator.start_generation()
 			
