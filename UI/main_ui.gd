@@ -64,15 +64,15 @@ func _ready() -> void:
 	stock.lvl = 0
 	stock.cost = stock.base_cost
 	stock.value = stock.base_value
-	$LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
-	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
-	$LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
-	$LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
+	$LeftBar/LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
+	$LeftBar/LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+	$LeftBar/LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
+	$LeftBar/LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
 	
 	# select first button for keyboard/gamepad navigation
-	$LeftUpgrades/HealthUpgradeButton.grab_focus()
+	$LeftBar/LeftUpgrades/HealthUpgradeButton.grab_focus()
 	
-	ui_positions.append($LeftUpgrades.position)
+	ui_positions.append($LeftBar.position)
 	ui_positions.append($RightUpgrades.position)
 	ui_positions.append($GameTitle.position)
 	ui_positions.append($Settings.position)
@@ -82,7 +82,7 @@ func _ready() -> void:
 
 func start_game() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property($LeftUpgrades, "position", Vector2(-$LeftUpgrades.size.x-ui_positions[0].x, ui_positions[0].y), 1)
+	tween.tween_property($LeftBar, "position", Vector2(-$LeftBar.size.x-ui_positions[0].x, ui_positions[0].y), 1)
 	tween.tween_callback(hide_main_ui_callback)
 	tween = get_tree().create_tween()
 	tween.tween_property($RightUpgrades, "position", Vector2(ui_positions[1].x + $RightUpgrades.size.x + 2*ui_positions[0].x, ui_positions[1].y), 1)
@@ -90,16 +90,16 @@ func start_game() -> void:
 	tween.tween_property($GameTitle, "position", Vector2(ui_positions[2].x, -$GameTitle.size.y - ui_positions[2].y), 1)
 
 func hide_main_ui_callback() -> void:
-	$LeftUpgrades.visible = false
+	$LeftBar.visible = false
 	$RightUpgrades.visible = false
 	$GameTitle.visible = false
 
 
 func show_main_ui() -> void:
-	$LeftUpgrades.visible = true
+	$LeftBar.visible = true
 	$RightUpgrades.visible = true
 	$GameTitle.visible = true
-	$LeftUpgrades.position = ui_positions[0]
+	$LeftBar.position = ui_positions[0]
 	$RightUpgrades.position = ui_positions[1]
 	$GameTitle.position = ui_positions[2]
 
@@ -111,50 +111,50 @@ func _on_quit_button_pressed() -> void:
 
 func _on_health_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(health.cost):
-		$LeftUpgrades/HealthUpgradeButton.buy_fail_animation()
+		$LeftBar/LeftUpgrades/HealthUpgradeButton.buy_fail_animation()
 		return
 	
 	upgrade_stat(health,
 		func (base, lvl): return Currency.multiply(base, lvl + 1),
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
+	$LeftBar/LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
 
 
 func _on_speed_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(speed.cost):
-		$LeftUpgrades/SpeedUpgradeButton.buy_fail_animation()
+		$LeftBar/LeftUpgrades/SpeedUpgradeButton.buy_fail_animation()
 		return
 	
 	upgrade_stat(speed, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+	$LeftBar/LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
 
 
 func _on_resistance_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(resistance.cost):
-		$LeftUpgrades/ResistanceUpgradeButton.buy_fail_animation()
+		$LeftBar/LeftUpgrades/ResistanceUpgradeButton.buy_fail_animation()
 		return
 	
 	upgrade_stat(resistance, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
+	$LeftBar/LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 
 
 func _on_stock_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(stock.cost):
-		$LeftUpgrades/StockUpgradeButton.buy_fail_animation()
+		$LeftBar/LeftUpgrades/StockUpgradeButton.buy_fail_animation()
 		return
 	
 	upgrade_stat(stock, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
+	$LeftBar/LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
 
 
 func _on_h_slider_value_changed(value: float) -> void:
@@ -186,3 +186,8 @@ func hide_settings() -> void:
 func _hide_settings_callback() -> void:
 	$Settings.visible = false
 	in_settings = false
+
+
+func update_stats(max_distance: int, previous_distance: int) -> void:
+	$LeftBar/Stats/StatDstMax.text = "Distance max atteinte : " + str(max_distance)
+	$LeftBar/Stats/StatDstPrev.text = "Distance run précédente : " + str(previous_distance)
