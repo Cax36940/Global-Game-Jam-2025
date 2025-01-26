@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("ui_cancel"):
 			$MainUI.start_game()
 			is_in_game = true
+			$Bubble.reset($MainUI)
 			$Bubble.set_can_update(is_in_game)
 			#$CollectibleGenerator.start_generation()
 			

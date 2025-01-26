@@ -10,25 +10,34 @@ var health = {
 	value = 1.0
 }
 
-var resistance = {
-	base_cost = Currency.multiply(Currency.costs["NaCl"], 5),
-	base_value = 1.0,
-	lvl = 0,
-	cost = Currency.new(0, 0, 10, 0),
-	value = 1.0
-}
-
 var speed = {
 	base_cost = Currency.multiply(Currency.costs["NaClO4"], 3),
 	base_value = 1.0,
 	lvl = 0,
-	cost = Currency.new(0, 0, 10, 0),
+	cost = Currency.new(1, 1, 0, 4),
+	value = 1.0
+}
+
+var resistance = {
+	base_cost = Currency.multiply(Currency.costs["NaCl"], 5),
+	base_value = 1.0,
+	lvl = 0,
+	cost = Currency.new(1, 1, 0, 0),
+	value = 1.0
+}
+
+var stock = {
+	base_cost = Currency.multiply(Currency.costs["NaOH"], 3),
+	base_value = 1.0,
+	lvl = 0,
+	cost = Currency.new(1, 0, 1, 1),
 	value = 1.0
 }
 
 func get_health(): return health.value
 func get_speed(): return speed.value
 func get_resistance(): return resistance.value
+func get_stock(): return stock.value
 
 
 func upgrade_stat(stat: Dictionary, cost_func: Callable, value_func: Callable):
@@ -43,15 +52,19 @@ func _ready() -> void:
 	health.lvl = 0
 	health.cost = health.base_cost
 	health.value = health.base_value
-	resistance.lvl = 0
-	resistance.cost = resistance.base_cost
-	resistance.value = resistance.base_value
 	speed.lvl = 0
 	speed.cost = speed.base_cost
 	speed.value = speed.base_value
+	resistance.lvl = 0
+	resistance.cost = resistance.base_cost
+	resistance.value = resistance.base_value
+	stock.lvl = 0
+	stock.cost = stock.base_cost
+	stock.value = stock.base_value
 	$LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
-	$LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+	$LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
+	$LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
 	
 	# select first button for keyboard/gamepad navigation
 	$LeftUpgrades/HealthUpgradeButton.grab_focus()
@@ -102,6 +115,18 @@ func _on_health_upgrade_button_pressed() -> void:
 	$LeftUpgrades/HealthUpgradeButton.set_upgrade_txt(health.cost, health.lvl, health.value)
 
 
+func _on_speed_upgrade_button_pressed() -> void:
+	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(speed.cost):
+		$LeftUpgrades/SpeedUpgradeButton.buy_fail_animation()
+		return
+	
+	upgrade_stat(speed, 
+		func (base, lvl): return Currency.multiply(base, lvl + 1), 
+		func (base, lvl): return base * (lvl / 2.0 + 1.0)
+	)
+	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+
+
 func _on_resistance_upgrade_button_pressed() -> void:
 	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(resistance.cost):
 		$LeftUpgrades/ResistanceUpgradeButton.buy_fail_animation()
@@ -114,13 +139,13 @@ func _on_resistance_upgrade_button_pressed() -> void:
 	$LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 
 
-func _on_speed_upgrade_button_pressed() -> void:
-	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(speed.cost):
+func _on_stock_upgrade_button_pressed() -> void:
+	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(stock.cost):
 		$LeftUpgrades/SpeedUpgradeButton.buy_fail_animation()
 		return
 	
-	upgrade_stat(speed, 
+	upgrade_stat(stock, 
 		func (base, lvl): return Currency.multiply(base, lvl + 1), 
 		func (base, lvl): return base * (lvl / 2.0 + 1.0)
 	)
-	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
+	$LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)

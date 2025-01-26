@@ -7,7 +7,9 @@ extends CharacterBody2D
 const AIR_MAX = 1.0 # initial bubble max size (with all upgrades) = in-game max size
 const AIR_MIN = 0.01 # bubble pop size
 const AIR_LOSE_RATE = 0.01 # per second
-const REFILL_SPEED = 0.1 # per second
+const AIR_REFILL_SPEED = 0.1 # per second
+const AIR_INIT = 0.1
+const STOCK_INIT = 0.02
 
 const STOCK_MAX = 10.0 # max air stock size (10 times AIR_MAX)
 const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
@@ -16,22 +18,39 @@ const ZOOM_PER_SEC = 0.1
 
 const MAX_DEPTH = 10984 # m
 
-var hspeed = 300.0
-var vspeed = 100.0
-var air = 0.1 # TODO replace with initial air value
-var stock_capacity = 0.02 # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
-var stock = 0.02 # air in stock (between 0 and stock_capacity, varies during the run)
+const VSPEED = 100.0
+const HSPEED = 200.0
+
+var air_init_mult = 1.0
+var vspeed_mult = 1.0
+var hspeed_mult = 1.0 # not implemented
+var resistance = 0.0 # % damage reduction
+var stock_capacity_init_mult = 1.0
+
+var air = AIR_INIT
+var stock_capacity = STOCK_INIT # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
+var stock = STOCK_INIT # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 var depth = MAX_DEPTH
 
 signal bubble_died
 
+
 func set_can_update(value: bool):
 	set_physics_process(value)
 	set_process(value)
 
-func reset():
-	pass # mettre tout aux valeurs initiales (link to ui)
+
+func reset(ui: Node):
+	# reset values for next run (link to ui)
+	stock_capacity_init_mult = ui.get_stock()
+	air_init_mult            = ui.get_air()
+	vspeed_mult              = ui.get_speed()
+	resistance               = ui.get_resistance()
+	
+	stock_capacity = STOCK_INIT * stock_capacity_init_mult
+	air = AIR_INIT * air_init_mult
+	stock = stock_capacity
 
 
 func _ready() -> void:
@@ -47,25 +66,39 @@ func adjust_size(delta: float):
 	z = move_toward(z, 1/mult, ZOOM_PER_SEC * delta)
 	$Camera2D.zoom = Vector2(z, z)
 
+
 func refill(quantity: float):
-	quantity = min(quantity, stock)
+	quantity = min(min(quantity, stock), AIR_MAX-air)
 	air += quantity
 	stock -= quantity
 
-func lose_air_check_die(delta: float):
+
+func lose_air_check_die(delta: float) -> bool:
 	air = move_toward(air, 0, AIR_LOSE_RATE * delta)
-	air = min(air, AIR_MAX)
 	
 	if air < AIR_MIN: # use air in stock if possible (to avoid dying)
 		refill(AIR_MIN - air)
 	return air < AIR_MIN
+
+
+func damage(value: float):
+	air = move_toward(air, 0, value * (1-resistance))
+	
+	if air < AIR_MIN: # use air in stock if possible (to avoid dying)
+		refill(AIR_MIN - air)
+
+
+func pop():
+	bubble_sprite.pop()
+	$PopSound.play()
+
 
 func _process(delta: float) -> void:
 	depth = 10984 + int(position.y/50)
 	$"../CanvasLayer/Label".text = str(depth)
 	var die = lose_air_check_die(delta)
 	if die:
-		vspeed = 0
+		vspeed_mult = 0
 		velocity = Vector2.ZERO
 		pop()
 		set_can_update(false)
@@ -86,7 +119,7 @@ func _physics_process(delta: float) -> void:
 	var use_stock := Input.is_action_pressed("air")
 	
 	if use_stock:
-		refill(REFILL_SPEED * delta)
+		refill(AIR_REFILL_SPEED * delta)
 	
 	"""
 	# With no friction/sliding effects
@@ -96,6 +129,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, hspeed)
 	"""
 	
+	var hspeed = HSPEED * hspeed_mult
+	var vspeed = VSPEED * vspeed_mult
 	# With friction/sliding effects
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * hspeed, hspeed * SLIDE_RATE_INPUT * delta)
@@ -107,8 +142,3 @@ func _physics_process(delta: float) -> void:
 	
 	adjust_size(delta)
 	move_and_slide()
-
-func pop():
-	bubble_sprite.pop()
-	$PopSound.play()
-	
