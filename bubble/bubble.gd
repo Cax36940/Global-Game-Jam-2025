@@ -17,6 +17,7 @@ const SLIDE_RATE_INPUT = 2.0
 const ZOOM_PER_SEC = 0.1
 
 const MAX_DEPTH = 10984 # m
+const INFLATION_TIME = 5.0 # seconds
 
 const VSPEED = 100.0
 const HSPEED = 200.0
@@ -32,6 +33,7 @@ var stock_capacity = STOCK_INIT # air stock capacity (1.0 = AIR_MAX) (between 0 
 var stock = STOCK_INIT # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 var depth = MAX_DEPTH
+var inflation = 0.0
 
 signal bubble_died
 
@@ -90,6 +92,28 @@ func damage(value: float):
 		refill(AIR_MIN - air)
 
 
+func get_air_inflation() -> float:
+	return AIR_MIN + (inflation ** 2) * (AIR_INIT * air_init_mult)
+
+
+func inflate(delta: float) -> void:
+	inflation += delta / INFLATION_TIME
+	if inflation > 1.0:
+		pop()
+		$BubbleSprite.reset()
+		inflation = 0.0
+	air = get_air_inflation()
+	scale = Vector2(5*air, 5*air)
+
+
+func start() -> void:
+	$BubbleSprite.reset()
+	if inflation > 0.9:
+		inflation = 1.0
+		air = get_air_inflation()
+		scale = Vector2(5*air, 5*air)
+
+
 func pop():
 	bubble_sprite.pop()
 	for child in $Plastics.get_children():
@@ -99,7 +123,7 @@ func pop():
 
 func _process(delta: float) -> void:
 	depth = 10984 + int(position.y/50)
-	$"../CanvasLayer/Label".text = str(depth)
+	$"../CanvasLayer/Label".text = str(-depth)
 	var die = lose_air_check_die(delta)
 	if die:
 		vspeed_mult = 0
