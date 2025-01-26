@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 func detach():
 	is_on_bubble = false
 	reparent(get_node("/root/main/Plastics"))
-	position.y += randf_range(-50, -20)
+	position.y += randf_range(-50, -30)
 	position.x += 20 * randfn(0.0, 2.0)
 	scale = Vector2.ONE
 

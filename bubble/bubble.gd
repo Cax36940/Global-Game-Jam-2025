@@ -55,6 +55,9 @@ func reset(ui: Node):
 	stock = stock_capacity
 	$BubbleSprite.reset()
 	position = Vector2(0, 0)
+	var z = $Camera2D.zoom.x
+	z = 1/sqrt(AIR_INIT * air_init_mult)
+	$Camera2D.zoom = Vector2(z, z)
 
 
 func _ready() -> void:
@@ -101,7 +104,6 @@ func inflate(delta: float) -> void:
 	if inflation > 1.0:
 		pop()
 		$BubbleSprite.reset()
-		inflation = 0.0
 	air = get_air_inflation()
 	scale = Vector2(5*air, 5*air)
 
@@ -115,6 +117,7 @@ func start() -> void:
 
 
 func pop():
+	inflation = 0.1
 	bubble_sprite.pop()
 	for child in $Plastics.get_children():
 		child.detach()

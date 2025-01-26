@@ -1,12 +1,12 @@
 extends Node2D
 
 
-var velocity = Vector2(0, -1.0)
+var velocity = Vector2(0, -1.5)
 const HSPEED_VARIATION = 0.2
 const VSPEED_VARIATION = 0.2
 var air = 0.005
 var end_time = 0.0
-const END_TIME_MEAN = 10.0 # seconds
+const END_TIME_MEAN = 15.0 # seconds
 var finished = false
 var lifetime = 0.0
 
@@ -16,7 +16,7 @@ func _draw() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	lifetime = randfn(END_TIME_MEAN * 1000, 0.5)
+	lifetime = randfn(END_TIME_MEAN, 0.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
