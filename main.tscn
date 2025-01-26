@@ -23,6 +23,7 @@ script = ExtResource("1_15lqo")
 script = ExtResource("2_28mpt")
 
 [node name="Bubble" parent="." instance=ExtResource("2_fqsu4")]
+z_index = 100
 
 [node name="RockBackground" parent="." instance=ExtResource("3_poyp4")]
 position = Vector2(-960, -540)
