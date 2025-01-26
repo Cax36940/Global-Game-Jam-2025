@@ -9,7 +9,8 @@ var right_noise : FastNoiseLite
 var rock_color : Color = Color(1.0, 1.0, 1.0)
 
 var velocity : Vector2 = Vector2.ZERO
-var velocity_factor : float = 1.0 # factor to account for depth of the layer
+var velocity_factor : float = 0.0 # factor to account for depth of the layer
+var target_velocity_factor : float
 var y_offset : float = 0.0
 var begin_y : float = -200.0
 var end_y : float
@@ -24,37 +25,7 @@ func _ready() -> void:
 	left_rock.set_color(rock_color)
 	right_rock.set_color(rock_color)
 	
-	left_rock.polygon.clear()
-	right_rock.polygon.clear()
-	
-	var points : Array[Vector2] = []
-	
-	left_noise = FastNoiseLite.new()
-	left_noise.seed = randi()
-	left_noise.frequency = 0.004  # Adjust frequency for different noise patterns
-	
-	right_noise = FastNoiseLite.new()
-	right_noise.seed = randi()
-	right_noise.frequency = 0.004  # Adjust frequency for different noise patterns
-	
-	
-	# Fill left rock points
-	points.push_back(Vector2(-100000,end_y))
-	points.push_back(Vector2(-100000,begin_y))
-	for i in range(begin_y, end_y + spacing, spacing):
-		points.push_back(Vector2(width + left_noise.get_noise_1d(i) * 20, i))
-	left_rock.polygon = points
-	
-	points.clear()
-	
-	# Fill right rock points
-	points.push_back(Vector2(get_viewport_rect().size.x + 100000,end_y))
-	points.push_back(Vector2(get_viewport_rect().size.x + 100000,begin_y))
-	for i in range(begin_y, end_y + spacing, spacing):
-		points.push_back(Vector2(get_viewport_rect().size.x - width + right_noise.get_noise_1d(i) * 20, i))
-		
-	right_rock.polygon = points
-	init_global_position = global_position
+	reset()
 	pass # Replace with function body.
 
 
@@ -62,6 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_left_rock(delta)
 	update_right_rock(delta)
+	velocity_factor = move_toward(velocity_factor, target_velocity_factor, delta)
 	pass
 
 func update_left_rock(delta):
@@ -115,7 +87,40 @@ func set_color(new_color : Color) :
 	rock_color = new_color
 
 func set_velocity_factor(new_velocity_factor : float) :
-	velocity_factor = new_velocity_factor
+	target_velocity_factor = new_velocity_factor
 
 func set_velocity(new_velocity : Vector2):
 	velocity = new_velocity
+
+func reset():
+	left_rock.polygon.clear()
+	right_rock.polygon.clear()
+	
+	var points : Array[Vector2] = []
+	
+	left_noise = FastNoiseLite.new()
+	left_noise.seed = randi()
+	left_noise.frequency = 0.004  # Adjust frequency for different noise patterns
+	
+	right_noise = FastNoiseLite.new()
+	right_noise.seed = randi()
+	right_noise.frequency = 0.004  # Adjust frequency for different noise patterns
+	
+	
+	# Fill left rock points
+	points.push_back(Vector2(-100000,end_y))
+	points.push_back(Vector2(-100000,begin_y))
+	for i in range(begin_y, end_y + spacing, spacing):
+		points.push_back(Vector2(width - (global_position.x - init_global_position.x) * velocity_factor + left_noise.get_noise_1d(i) * 20, i))
+	left_rock.polygon = points
+	
+	points.clear()
+	
+	# Fill right rock points
+	points.push_back(Vector2(get_viewport_rect().size.x + 100000,end_y))
+	points.push_back(Vector2(get_viewport_rect().size.x + 100000,begin_y))
+	for i in range(begin_y, end_y + spacing, spacing):
+		points.push_back(Vector2(get_viewport_rect().size.x - width - (global_position.x - init_global_position.x) * velocity_factor + right_noise.get_noise_1d(i) * 20, i))
+		
+	right_rock.polygon = points
+	init_global_position = global_position
