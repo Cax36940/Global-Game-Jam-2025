@@ -3,10 +3,10 @@ extends GridContainer
 
 
 func set_currencies_txt(wallet: Currency) -> void:
-	$"Na+".text = "Na+ : " + str(wallet.na)
-	$"Cl-".text = "Cl- : " + str(wallet.cl)
-	$"H+".text = "H+ : " + str(wallet.h)
-	$"O-".text = "O- : " + str(wallet.o)
+	$"HBoxContainer/Na+".text = "Na+ : " + str(wallet.na)
+	$"HBoxContainer2/Cl-".text = "Cl- : " + str(wallet.cl)
+	$"HBoxContainer3/H+".text = "H+ : " + str(wallet.h)
+	$"HBoxContainer4/O-".text = "O- : " + str(wallet.o)
 
 
 func _ready() -> void:
