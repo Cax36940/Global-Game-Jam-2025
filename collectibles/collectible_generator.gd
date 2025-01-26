@@ -21,16 +21,16 @@ func start_generation():
 	generate_collectible()
 
 func reset():
-	for node in $NaCoin.get_children():
-		$NaCoin.remove_child(node)
+	for node in $NaCoins.get_children():
+		$NaCoins.remove_child(node)
 		node.queue_free() 
 		
-	for node in $ClCoin.get_children():
-		$ClCoin.remove_child(node)
+	for node in $ClCoins.get_children():
+		$ClCoins.remove_child(node)
 		node.queue_free() 
 		
-	for node in $NaClCoin.get_children():
-		$NaClCoin.remove_child(node)
+	for node in $NaClCoins.get_children():
+		$NaClCoins.remove_child(node)
 		node.queue_free() 
 
 func generate_collectible() -> void :
