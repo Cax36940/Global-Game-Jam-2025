@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn0uxrgx4pdie"]
+[gd_scene load_steps=20 format=3 uid="uid://cn0uxrgx4pdie"]
 
 [ext_resource type="Script" path="res://UI/main_ui.gd" id="1_vl84j"]
 [ext_resource type="Texture2D" uid="uid://b5q0xbhlk14tx" path="res://UI/ressources/exit.png" id="2_hnf4a"]
@@ -10,6 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://bx6y27p6q8i6b" path="res://UI/ressources/circle_up.tres" id="7_bqgti"]
 [ext_resource type="Texture2D" uid="uid://bbhxlel8pd2rj" path="res://UI/ressources/circle_down.tres" id="8_5ednf"]
 [ext_resource type="Texture2D" uid="uid://ynw2b0pcek6w" path="res://UI/ressources/panel-transparent-border-013.png" id="10_8puxi"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_t3gal"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_gytah"]
+events = [SubResource("InputEventKey_t3gal")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w23ky"]
 
@@ -82,6 +89,7 @@ _data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kegmw"]
 
 [node name="MainUI" type="CanvasLayer"]
+layer = 3
 script = ExtResource("1_vl84j")
 
 [node name="GameTitle" type="Label" parent="."]
@@ -113,6 +121,7 @@ offset_left = 87.0
 offset_top = 5.0
 offset_right = 164.0
 offset_bottom = 82.0
+shortcut = SubResource("Shortcut_gytah")
 icon = ExtResource("3_xpxhy")
 flat = true
 expand_icon = true
@@ -672,7 +681,6 @@ text = "O- : 150"
 horizontal_alignment = 2
 
 [node name="Settings" type="NinePatchRect" parent="."]
-visible = false
 self_modulate = Color(0.54981, 0.500983, 0.446114, 1)
 anchors_preset = 8
 anchor_left = 0.5
@@ -680,9 +688,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -450.0
+offset_top = -1530.0
 offset_right = 300.0
-offset_bottom = 450.0
+offset_bottom = -630.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_8puxi")
@@ -728,7 +736,7 @@ text = "Volume de la musique "
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-value = 10.0
+value = 50.0
 
 [node name="HowToPlayBox" type="VBoxContainer" parent="Settings/VBoxContainer"]
 layout_mode = 2

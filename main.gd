@@ -27,7 +27,7 @@ func on_end_game() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if !is_in_game:
-		if Input.is_action_just_pressed("ui_cancel"):
+		if Input.is_action_just_pressed("ui_copy"):
 			$MainUI.start_game()
 			is_in_game = true
 			$Bubble.reset($MainUI)
