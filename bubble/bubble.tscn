@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://gbcb6vfrmeku"]
+[gd_scene load_steps=5 format=3 uid="uid://gbcb6vfrmeku"]
 
 [ext_resource type="Script" path="res://bubble/bubble.gd" id="1_jhrmi"]
 [ext_resource type="PackedScene" uid="uid://idkbtuevxpcd" path="res://bubble/bubble_sprite.tscn" id="3_k1ojm"]
+[ext_resource type="AudioStream" uid="uid://bac7ouc1vnx6y" path="res://sfx/big-bubble.mp3" id="3_ovr7c"]
 
 [sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_kdwbs"]
 
@@ -16,3 +17,7 @@ script = ExtResource("1_jhrmi")
 
 [node name="BubbleCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("ConcavePolygonShape2D_kdwbs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ovr7c")
+volume_db = -10.0

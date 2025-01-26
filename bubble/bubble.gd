@@ -104,4 +104,5 @@ func _physics_process(delta: float) -> void:
 
 func pop():
 	bubble_sprite.pop()
+	$AudioStreamPlayer.play()
 	
