@@ -32,6 +32,8 @@ func reset():
 
 
 func _ready() -> void:
+	$Ambient.play()
+	$Music.play()
 	bubble_died.connect(reset)
 	adjust_size(0)
 
@@ -105,5 +107,5 @@ func _physics_process(delta: float) -> void:
 
 func pop():
 	bubble_sprite.pop()
-	$AudioStreamPlayer.play()
+	$PopSound.play()
 	
