@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	for i in range(1, NUMBER_POINT):
 		set_point_position(i, get_point_position(i-1) + JOINT_LENGTH * (get_point_position(i) - get_point_position(i-1)).normalized())
 	
-	if get_point_position(0).x > 1500 or position.y > 1000:
+	if get_point_position(0).x > 1500 or position.y > - 10 * get_node("/root/main/Bubble").velocity.y:
 		get_parent().remove_child(self)
 		queue_free()
 	pass
