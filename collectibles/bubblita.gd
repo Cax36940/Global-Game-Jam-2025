@@ -38,7 +38,7 @@ func pop():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# touch bubble
 	if body.get_parent().is_in_game:
-		body.air += air
+		body.air = min(body.air + air, body.AIR_MAX)
 		pop()
 
 

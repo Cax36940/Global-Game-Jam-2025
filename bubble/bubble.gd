@@ -11,7 +11,7 @@ const AIR_REFILL_SPEED = 0.1 # per second
 const AIR_INIT = 0.1
 const STOCK_INIT = 0.02
 
-const STOCK_MAX = 10.0 # max air stock size (10 times AIR_MAX)
+const STOCK_MAX = 2.0 # max air stock size (2x AIR_MAX)
 const SLIDE_RATE = 0.9 # 1 = no slide, 0 = no friction
 const SLIDE_RATE_INPUT = 2.0
 const ZOOM_PER_SEC = 0.1
@@ -43,16 +43,19 @@ func set_can_update(value: bool):
 	set_process(value)
 
 
-func reset(ui: Node):
+func reset_values(ui: Node):
 	# reset values for next run (link to ui)
-	stock_capacity_init_mult = ui.get_stock()
-	air_init_mult            = ui.get_health()
+	stock_capacity_init_mult = min(ui.get_stock(), STOCK_MAX / STOCK_INIT)
+	air_init_mult            = min(ui.get_health(), AIR_MAX / AIR_INIT)
 	vspeed_mult              = ui.get_speed()
 	resistance               = ui.get_resistance()
 	
-	stock_capacity = STOCK_INIT * stock_capacity_init_mult * 5
+	stock_capacity = STOCK_INIT * stock_capacity_init_mult
 	air = AIR_INIT * air_init_mult
 	stock = stock_capacity
+
+func reset(ui: Node):
+	reset_values(ui)
 	$BubbleSprite.reset()
 	position = Vector2.ZERO
 	$Camera2D.zoom = Vector2.ONE
@@ -94,7 +97,7 @@ func damage(value: float):
 
 
 func get_air_inflation() -> float:
-	return AIR_MIN + (inflation ** 2) * (AIR_INIT * air_init_mult)
+	return AIR_MIN + (inflation ** 2) * (AIR_INIT * air_init_mult - AIR_MIN)
 
 
 func inflate(delta: float) -> void:

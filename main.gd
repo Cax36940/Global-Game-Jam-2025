@@ -44,7 +44,7 @@ func on_start_game() -> void:
 func _process(delta: float) -> void:
 	if !is_in_game:
 		$Bubble.inflate(delta)
-			
+		$Bubble.reset_values($MainUI)
 			
 	$CanvasLayer/StockIndicator.quantity = $Bubble.stock / $Bubble.stock_capacity
 	$RockBackground.position.y = $Bubble.position.y - get_viewport_rect().size.y / 2
