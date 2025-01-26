@@ -32,6 +32,7 @@ func on_end_game() -> void:
 	$Bubble.update_depth()
 	$Bubble.set_can_update(is_in_game)
 	$CollectibleGenerator.reset()
+	$RockBackground.reset()
 
 func on_start_game() -> void:
 	$MainUI.start_game()
