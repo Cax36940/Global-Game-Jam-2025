@@ -176,5 +176,6 @@ func _physics_process(delta: float) -> void:
 	mult = sqrt(5*air)
 	velocity.y = - vspeed * mult * 2
 	
+	print(velocity.y)
 	adjust_size(delta)
 	move_and_slide()

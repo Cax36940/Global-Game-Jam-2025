@@ -12,6 +12,7 @@ func _ready() -> void:
 			randf_range(-1, 1),  # Random Y rotation
 			randf_range(-1, 1)   # Random Z rotation
 		).normalized()
+
 func _process(delta: float) -> void:
 	cube.rotate_object_local(rotation_axis, rotation_speed * delta)
 	var axis_rotation = Basis(Vector3.UP, axis_rotation_speed * delta) * Basis(Vector3.RIGHT, axis_rotation_speed * delta)
