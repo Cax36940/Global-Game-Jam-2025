@@ -19,8 +19,8 @@ const MAX_DEPTH = 10984 # m
 var hspeed = 300.0
 var vspeed = 100.0
 var air = 0.1 # TODO replace with initial air value
-var stock_capacity = 0.1 # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
-var stock = 0.1 # air in stock (between 0 and stock_capacity, varies during the run)
+var stock_capacity = 0.02 # air stock capacity (1.0 = AIR_MAX) (between 0 and STOCK_MAX, depend on upgrades)
+var stock = 0.02 # air in stock (between 0 and stock_capacity, varies during the run)
 var mult = 1.0 # Multiplier for camera and speed, = sqrt(air)
 var depth = MAX_DEPTH
 
