@@ -21,7 +21,7 @@ func start_generation():
 	generate_collectible()
 
 func generate_collectible() -> void :
-	await get_tree().create_timer(1.).timeout
+	await get_tree().create_timer(5.).timeout
 	clear_coins()
 	var na_space : int = MAX_NA - $NaCoins.get_child_count()
 	var cl_space : int = MAX_CL - $ClCoins.get_child_count()
@@ -35,7 +35,7 @@ func generate_collectible() -> void :
 		return
 	
 	var instance_position : Vector2 = get_node("../Bubble").position
-	instance_position.x += get_node("../Bubble").hspeed * randf_range(-3, 3)
+	instance_position.x += get_node("../Bubble").HSPEED * get_node("../Bubble").hspeed_mult * randf_range(-3, 3)
 	instance_position.y += 100 + min(get_node("../Bubble").velocity.y, -50) * 20
 
 	random_int -= na_space
