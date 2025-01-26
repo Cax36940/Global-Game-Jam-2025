@@ -52,6 +52,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if is_on_bubble:
 		return
 	is_on_bubble = true
+	rotation_degrees = 0
 	if body.has_node("Plastics"):
 		call_deferred("reparent", body.get_node("Plastics"))
 	

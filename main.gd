@@ -33,6 +33,7 @@ func on_end_game() -> void:
 	$Bubble.set_can_update(is_in_game)
 	$CollectibleGenerator.reset()
 	$ObstaclesGenerator.reset()
+	$PlasticsGenerator.reset()
 	$RockBackground.reset()
 
 func on_start_game() -> void:
@@ -42,6 +43,7 @@ func on_start_game() -> void:
 	$Bubble.set_can_update(is_in_game)
 	$CollectibleGenerator.start_generation()
 	$ObstaclesGenerator.start_generation()
+	$PlasticsGenerator.start_generation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
