@@ -9,6 +9,7 @@ radius = 20.0
 
 [node name="NaCoin" type="Node2D"]
 script = ExtResource("1_m00ff")
+na_value = 1
 
 [node name="Na" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -3.8147e-06)

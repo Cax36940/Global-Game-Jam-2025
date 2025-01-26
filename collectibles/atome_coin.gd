@@ -21,4 +21,5 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	visible = false
 
 func _on_audio_stream_player_finished() -> void:
+	get_parent().remove_child(self)
 	queue_free()
