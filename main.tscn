@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://df5721paxmho5"]
+[gd_scene load_steps=17 format=3 uid="uid://df5721paxmho5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_15lqo"]
 [ext_resource type="Script" path="res://bubble/player_data.gd" id="2_28mpt"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dfhk1hbf0eu4d" path="res://bubble/stock_indicator.tscn" id="12_sk3ya"]
 [ext_resource type="PackedScene" uid="uid://boyjiskcu6yuo" path="res://collectibles/obstacle.tscn" id="13_76f40"]
 [ext_resource type="PackedScene" uid="uid://dc4latf4g8k0a" path="res://collectibles/obstacles_generator.tscn" id="14_3angs"]
+[ext_resource type="Script" path="res://geysers.gd" id="15_3fwca"]
 [ext_resource type="PackedScene" uid="uid://chtwgjmijpkm1" path="res://collectibles/plastics_generator.tscn" id="15_obki2"]
 
 [node name="main" type="Node2D"]
@@ -46,9 +47,6 @@ position = Vector2(195, -325)
 
 [node name="NaCoin2" parent="Collectibles" instance=ExtResource("5_fdfmh")]
 position = Vector2(-195, -471)
-
-[node name="Geyser" parent="." instance=ExtResource("7_qohgu")]
-position = Vector2(275, -356)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1007.0
@@ -91,3 +89,17 @@ position = Vector2(-53, -365)
 [node name="ObstaclesGenerator" parent="." instance=ExtResource("14_3angs")]
 
 [node name="PlasticsGenerator" parent="." instance=ExtResource("15_obki2")]
+
+[node name="Geysers" type="Node2D" parent="."]
+script = ExtResource("15_3fwca")
+
+[node name="Geyser" parent="Geysers" instance=ExtResource("7_qohgu")]
+position = Vector2(275, -356)
+
+[node name="Geyser2" parent="Geysers" instance=ExtResource("7_qohgu")]
+position = Vector2(-300, -10356)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="Geyser3" parent="Geysers" instance=ExtResource("7_qohgu")]
+position = Vector2(275, -20356)

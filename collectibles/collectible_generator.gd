@@ -8,10 +8,11 @@ const MAX_NA : int = 10
 const MAX_CL : int = 10
 const MAX_NACL : int = 1 #Keep it to 1 otherwise display is glitched
 
+var main_ui
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	main_ui = $"../MainUI"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -34,10 +35,11 @@ func reset():
 		node.queue_free() 
 
 func generate_collectible() -> void :
-	await get_tree().create_timer(randf_range(4., 6.)).timeout
+	var t = randf_range(4., 6.) * 2.0/(main_ui.get_na_amount() + main_ui.get_cl_amount())
+	await get_tree().create_timer(t).timeout
 	clear_coins()
-	var na_space : int = MAX_NA - $NaCoins.get_child_count()
-	var cl_space : int = MAX_CL - $ClCoins.get_child_count()
+	var na_space : int = MAX_NA * main_ui.get_na_amount() - $NaCoins.get_child_count()
+	var cl_space : int = MAX_CL * main_ui.get_cl_amount() - $ClCoins.get_child_count()
 	var nacl_space : int = MAX_NACL - $NaClCoins.get_child_count()
 	
 	var total_space : int = na_space + cl_space + nacl_space

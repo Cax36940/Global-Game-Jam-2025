@@ -36,10 +36,28 @@ var stock = {
 	value = 1.0
 }
 
+var na_amount = {
+	base_cost = Currency.multiply(Currency.costs["O2"], 1),
+	base_value = 1.0,
+	lvl = 0,
+	cost = Currency.new(0, 0, 0, 1),
+	value = 1.0
+}
+
+var cl_amount = {
+	base_cost = Currency.multiply(Currency.costs["O2"], 1),
+	base_value = 1.0,
+	lvl = 0,
+	cost = Currency.new(0, 0, 0, 1),
+	value = 1.0
+}
+
 func get_health(): return health.value
 func get_speed(): return speed.value
 func get_resistance(): return resistance.value
 func get_stock(): return stock.value
+func get_na_amount(): return na_amount.value
+func get_cl_amount(): return cl_amount.value
 
 
 func upgrade_stat(stat: Dictionary, cost_func: Callable, value_func: Callable):
@@ -68,6 +86,8 @@ func _ready() -> void:
 	$LeftBar/LeftUpgrades/SpeedUpgradeButton.set_upgrade_txt(speed.cost, speed.lvl, speed.value)
 	$LeftBar/LeftUpgrades/ResistanceUpgradeButton.set_upgrade_txt(resistance.cost, resistance.lvl, resistance.value)
 	$LeftBar/LeftUpgrades/StockUpgradeButton.set_upgrade_txt(stock.cost, stock.lvl, stock.value)
+	$RightUpgrades/SkillUpgradeButton.set_upgrade_txt(na_amount.cost, na_amount.lvl, na_amount.value)
+	$RightUpgrades/SkillUpgradeButton2.set_upgrade_txt(cl_amount.cost, cl_amount.lvl, cl_amount.value)
 	
 	# select first button for keyboard/gamepad navigation
 	$LeftBar/LeftUpgrades/HealthUpgradeButton.grab_focus()
@@ -201,3 +221,27 @@ func update_stats(max_distance: int, previous_distance: int, total_distance_trav
 signal start_button_pressed
 func _on_start_button_pressed() -> void:
 	start_button_pressed.emit()
+
+
+func _on_skill_upgrade_button_pressed() -> void:
+	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(na_amount.cost):
+		$RightUpgrades/SkillUpgradeButton.buy_fail_animation()
+		return
+	
+	upgrade_stat(na_amount, 
+		func (base, lvl): return Currency.multiply(base, lvl**1.5 + 1), 
+		func (base, lvl): return base + lvl/10.0
+	)
+	$RightUpgrades/SkillUpgradeButton.set_upgrade_txt(na_amount.cost, na_amount.lvl, na_amount.value)
+
+
+func _on_skill_upgrade_button_2_pressed() -> void:
+	if PlayerData.singleton == null or !PlayerData.singleton.try_buy_upgrade(cl_amount.cost):
+		$RightUpgrades/SkillUpgradeButton2.buy_fail_animation()
+		return
+	
+	upgrade_stat(cl_amount, 
+		func (base, lvl): return Currency.multiply(base, lvl**1.5 + 1), 
+		func (base, lvl): return base + lvl/10.0
+	)
+	$RightUpgrades/SkillUpgradeButton2.set_upgrade_txt(cl_amount.cost, cl_amount.lvl, cl_amount.value)
