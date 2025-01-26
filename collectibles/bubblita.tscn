@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bep6h86si6a"]
+[gd_scene load_steps=4 format=3 uid="uid://bep6h86si6a"]
 
 [ext_resource type="Script" path="res://collectibles/bubblita.gd" id="1_4jjjg"]
-[ext_resource type="Texture2D" uid="uid://bbsonia0sl3il" path="res://collectibles/bubblita.png" id="1_ydjni"]
 [ext_resource type="AudioStream" uid="uid://iq1wwfayb64e" path="res://sfx/small-bubble.mp3" id="3_7fkg7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tb2w8"]
@@ -9,12 +8,6 @@ radius = 20.0
 
 [node name="Bubblita" type="Node2D"]
 script = ExtResource("1_4jjjg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(4.54747e-13, -1.19209e-07)
-scale = Vector2(0.0574325, 0.0574325)
-texture = ExtResource("1_ydjni")
 
 [node name="Area2D" type="Area2D" parent="."]
 

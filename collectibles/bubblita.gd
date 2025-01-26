@@ -32,7 +32,7 @@ func pop():
 	if not finished:
 		finished = true
 		$AudioStreamPlayer2D.play()
-		$Sprite2D.queue_free()
+		visible = false
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
