@@ -50,5 +50,5 @@ func set_velocity(new_velocity : Vector2):
 		child.set_velocity(new_velocity)
 
 func reset():
-	for rock_layer in $Rocks.get_children() :
-		rock_layer.reset()
+	for node in $Rocks.get_children() :
+		node.reset()
