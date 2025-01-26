@@ -30,6 +30,7 @@ func on_end_game() -> void:
 	$Bubble.reset($MainUI)
 	$Bubble.update_depth()
 	$Bubble.set_can_update(is_in_game)
+	$CollectibleGenerator.reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
