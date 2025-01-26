@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://qwp518eg201m"]
+[gd_scene load_steps=5 format=3 uid="uid://deurol71qh87b"]
 
-[ext_resource type="Script" path="res://collectibles/atome_coin.gd" id="1_m00ff"]
-[ext_resource type="Texture2D" uid="uid://e4c6kupeixx0" path="res://collectibles/na.png" id="2_7i82u"]
-[ext_resource type="AudioStream" uid="uid://c5rnpdsi7gige" path="res://sfx/multi-pop.mp3" id="3_a20ue"]
+[ext_resource type="Script" path="res://collectibles/atome_coin.gd" id="1_gqtqr"]
+[ext_resource type="Texture2D" uid="uid://7gkbjv8xece1" path="res://collectibles/cl.png" id="2_bfshy"]
+[ext_resource type="AudioStream" uid="uid://c5rnpdsi7gige" path="res://sfx/multi-pop.mp3" id="3_y2gik"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wlyq5"]
 radius = 20.0
 
-[node name="NaCoin" type="Node2D"]
-script = ExtResource("1_m00ff")
+[node name="ClCoin" type="Node2D"]
+script = ExtResource("1_gqtqr")
 
-[node name="Na" type="Sprite2D" parent="."]
+[node name="Cl" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -3.8147e-06)
 scale = Vector2(0.03275, 0.03275)
-texture = ExtResource("2_7i82u")
+texture = ExtResource("2_bfshy")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -22,7 +22,7 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_wlyq5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_a20ue")
+stream = ExtResource("3_y2gik")
 volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
