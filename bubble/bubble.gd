@@ -50,7 +50,7 @@ func reset(ui: Node):
 	vspeed_mult              = ui.get_speed()
 	resistance               = ui.get_resistance()
 	
-	stock_capacity = STOCK_INIT * stock_capacity_init_mult
+	stock_capacity = STOCK_INIT * stock_capacity_init_mult * 5
 	air = AIR_INIT * air_init_mult
 	stock = stock_capacity
 	$BubbleSprite.reset()
