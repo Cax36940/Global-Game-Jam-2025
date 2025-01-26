@@ -15,7 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://d0p5lefw3s6uv" path="res://UI/ressources/grey_button08.png" id="13_pvs2w"]
 [ext_resource type="Texture2D" uid="uid://bjt6bbk6crpjt" path="res://UI/ressources/grey_button09.png" id="14_6rtxk"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w23ky"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2qns"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_di8l3"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_uss5q"]
+events = [SubResource("InputEventKey_di8l3")]
 
 [sub_resource type="Animation" id="Animation_738nm"]
 length = 0.001
@@ -79,6 +87,8 @@ _data = {
 "ui_shake_animation": SubResource("Animation_1r7rh")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w23ky"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c406f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evjsl"]
@@ -91,16 +101,6 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_gytah"]
 events = [SubResource("InputEventKey_t3gal")]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2qns"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_di8l3"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_uss5q"]
-events = [SubResource("InputEventKey_di8l3")]
 
 [node name="MainUI" type="CanvasLayer"]
 layer = 3
@@ -120,6 +120,66 @@ theme_override_font_sizes/font_size = 60
 text = "¤"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = -160.0
+offset_right = 217.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f2qns")
+shortcut = SubResource("Shortcut_uss5q")
+flat = true
+script = ExtResource("3_frgtn")
+button_up_icon = ExtResource("13_pvs2w")
+button_down_icon = ExtResource("14_6rtxk")
+default_color = Color(1.10701e-06, 0.636754, 0.423781, 1)
+mouse_over_color = Color(1.56425e-06, 0.3852, 0.249673, 1)
+buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+
+[node name="gfx" type="NinePatchRect" parent="StartButton"]
+modulate = Color(1.10701e-06, 0.636754, 0.423781, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_pvs2w")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="StartButton/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.337255, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "JOUER"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartButton"]
+libraries = {
+"": SubResource("AnimationLibrary_4esr2")
+}
 
 [node name="LeftBar" type="Control" parent="."]
 layout_mode = 3
@@ -896,66 +956,7 @@ icon = ExtResource("3_xpxhy")
 flat = true
 expand_icon = true
 
-[node name="StartButton" type="Button" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -217.0
-offset_top = -160.0
-offset_right = 217.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f2qns")
-shortcut = SubResource("Shortcut_uss5q")
-flat = true
-script = ExtResource("3_frgtn")
-button_up_icon = ExtResource("13_pvs2w")
-button_down_icon = ExtResource("14_6rtxk")
-default_color = Color(1.10701e-06, 0.636754, 0.423781, 1)
-mouse_over_color = Color(1.56425e-06, 0.3852, 0.249673, 1)
-buy_fail_color = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
-
-[node name="gfx" type="NinePatchRect" parent="StartButton"]
-modulate = Color(1.10701e-06, 0.636754, 0.423781, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("13_pvs2w")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="StartButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Name" type="Label" parent="StartButton/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.337255, 0, 1)
-theme_override_font_sizes/font_size = 70
-text = "JOUER"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StartButton"]
-libraries = {
-"": SubResource("AnimationLibrary_4esr2")
-}
-
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="LeftBar/LeftUpgrades/HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
 [connection signal="pressed" from="LeftBar/LeftUpgrades/ResistanceUpgradeButton" to="." method="_on_resistance_upgrade_button_pressed"]
 [connection signal="pressed" from="LeftBar/LeftUpgrades/SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_pressed"]
@@ -963,4 +964,3 @@ libraries = {
 [connection signal="value_changed" from="Settings/VBoxContainer/SettingsBox/VolumeSetting/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
